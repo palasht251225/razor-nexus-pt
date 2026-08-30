@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RazorNexus — Autonomous Agentic Commerce Protocol</title>
+    <title>RazorNexus — AI Shopping & Payments on Razorpay</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,23 +12,12 @@
             theme: {
                 extend: {
                     colors: {
-                        zinc: {
-                            950: '#0a0a0a',
-                            900: '#121212',
-                            850: '#171717',
-                            800: '#262626',
-                            700: '#3f3f46',
-                            600: '#52525b',
-                            500: '#71717a',
-                            400: '#a1a1aa',
-                            300: '#d4d4d8',
-                            200: '#e4e4e7',
-                            100: '#f4f4f5'
+                        brand: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8'
                         }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', -apple-system, BlinkMacSystemFont, 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace']
                     }
                 }
             }
@@ -38,469 +27,409 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-[#0a0a0a] text-[#ededed] font-sans min-h-screen flex flex-col antialiased selection:bg-zinc-700 selection:text-white">
+<body class="bg-[#0c0f14] text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white">
 
-    <!-- Minimalist Top Navigation -->
-    <header class="border-b border-[#262626] bg-[#0a0a0a] sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-            <!-- Brand -->
+    <!-- Top Navigation Bar -->
+    <header class="border-b border-[#242c3d] bg-[#10141d]/90 backdrop-blur sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
             <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded bg-zinc-100 flex items-center justify-center text-black font-bold text-xs">
+                <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-black text-sm shadow-md">
                     RN
                 </div>
-                <div class="flex items-center gap-2">
-                    <span class="font-semibold text-sm tracking-tight text-zinc-100">RazorNexus</span>
-                    <span class="text-[11px] font-mono text-zinc-500 border-l border-zinc-800 pl-2">A2A Protocol</span>
+                <div>
+                    <span class="font-bold text-base tracking-tight text-white block">RazorNexus</span>
+                    <span class="text-[11px] text-slate-400 block -mt-0.5">AI Shopping & Payments on Razorpay</span>
                 </div>
             </div>
 
-            <!-- Middle Navigation Links -->
-            <nav class="hidden md:flex items-center gap-1">
-                <button data-tab="buyer-arena" class="nav-tab active-tab px-3 py-1.5 text-xs font-medium rounded text-zinc-100 bg-[#1e1e1e] border border-[#333333] transition-colors">
-                    Agent Arena
+            <!-- Clean Tab Switcher -->
+            <nav class="hidden md:flex items-center gap-1.5 bg-[#171c28] p-1 rounded-xl border border-[#242c3d]">
+                <button data-tab="buyer-arena" class="nav-tab active-tab px-3.5 py-1.5 text-xs font-semibold rounded-lg text-white bg-blue-600 shadow-sm transition-all">
+                    🛍️ Shop with AI
                 </button>
-                <button data-tab="merchant-growth" class="nav-tab px-3 py-1.5 text-xs font-medium rounded text-zinc-400 hover:text-zinc-200 transition-colors">
-                    Merchant Yield
+                <button data-tab="merchant-growth" class="nav-tab px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-300 hover:text-white transition-all">
+                    🏪 Store Dashboard
                 </button>
-                <button data-tab="budget-vault" class="nav-tab px-3 py-1.5 text-xs font-medium rounded text-zinc-400 hover:text-zinc-200 transition-colors">
-                    Delegation Vault
+                <button data-tab="budget-vault" class="nav-tab px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-300 hover:text-white transition-all">
+                    🛡️ Safety & Budget
                 </button>
-                <button data-tab="recovery-sim" class="nav-tab px-3 py-1.5 text-xs font-medium rounded text-zinc-400 hover:text-zinc-200 transition-colors">
-                    Cart Recovery
+                <button data-tab="recovery-sim" class="nav-tab px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-300 hover:text-white transition-all">
+                    💬 WhatsApp Recovery
                 </button>
-                <button data-tab="protocol-inspector" class="nav-tab px-3 py-1.5 text-xs font-medium rounded text-zinc-400 hover:text-zinc-200 transition-colors">
-                    Protocol Stream
-                </button>
-                <button data-tab="about-creator" class="nav-tab px-3 py-1.5 text-xs font-medium rounded text-zinc-400 hover:text-zinc-200 transition-colors">
-                    About Architect
+                <button data-tab="about-creator" class="nav-tab px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-300 hover:text-white transition-all">
+                    👤 About Creator
                 </button>
             </nav>
 
-            <!-- Right Status & Author Badge -->
+            <!-- User Budget Pill & Author -->
             <div class="flex items-center gap-3">
-                <div class="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded bg-[#141414] border border-[#262626] text-xs font-mono text-zinc-400">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    <span id="header-budget-text">Vault: ₹14,200 / ₹50,000</span>
+                <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#171c28] border border-[#242c3d] text-xs">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <span id="header-budget-text" class="font-medium text-slate-300">Daily Budget: ₹50,000</span>
                 </div>
-                <button onclick="switchTab('about-creator')" class="px-2.5 py-1 rounded border border-[#262626] hover:border-[#404040] text-xs text-zinc-300 transition-colors font-mono">
+                <button onclick="switchTab('about-creator')" class="px-3 py-1.5 rounded-lg bg-[#1f2637] hover:bg-[#283248] text-xs font-medium text-blue-300 border border-blue-500/30 transition-all">
                     Palash Tripathi
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Navigation Strip -->
-        <div class="md:hidden flex overflow-x-auto gap-1 border-t border-[#1f1f1f] px-3 py-1.5 custom-scrollbar">
-            <button data-tab="buyer-arena" class="nav-tab active-tab px-3 py-1 text-xs text-zinc-100 bg-[#1e1e1e] rounded whitespace-nowrap">Agent Arena</button>
-            <button data-tab="merchant-growth" class="nav-tab px-3 py-1 text-xs text-zinc-400 whitespace-nowrap">Merchant Yield</button>
-            <button data-tab="budget-vault" class="nav-tab px-3 py-1 text-xs text-zinc-400 whitespace-nowrap">Delegation Vault</button>
-            <button data-tab="recovery-sim" class="nav-tab px-3 py-1 text-xs text-zinc-400 whitespace-nowrap">Cart Recovery</button>
-            <button data-tab="protocol-inspector" class="nav-tab px-3 py-1 text-xs text-zinc-400 whitespace-nowrap">Protocol Stream</button>
-            <button data-tab="about-creator" class="nav-tab px-3 py-1 text-xs text-zinc-400 whitespace-nowrap">About Architect</button>
+        <!-- Mobile Tab Scroll -->
+        <div class="md:hidden flex overflow-x-auto gap-2 border-t border-[#242c3d] px-4 py-2 bg-[#141822]">
+            <button data-tab="buyer-arena" class="nav-tab active-tab px-3 py-1.5 text-xs text-white bg-blue-600 rounded-lg whitespace-nowrap">🛍️ Shop with AI</button>
+            <button data-tab="merchant-growth" class="nav-tab px-3 py-1.5 text-xs text-slate-300 whitespace-nowrap">🏪 Store Dashboard</button>
+            <button data-tab="budget-vault" class="nav-tab px-3 py-1.5 text-xs text-slate-300 whitespace-nowrap">🛡️ Safety & Budget</button>
+            <button data-tab="recovery-sim" class="nav-tab px-3 py-1.5 text-xs text-slate-300 whitespace-nowrap">💬 WhatsApp Recovery</button>
+            <button data-tab="about-creator" class="nav-tab px-3 py-1.5 text-xs text-slate-300 whitespace-nowrap">👤 About Creator</button>
         </div>
     </header>
 
-    <!-- Main Content Body -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+    <!-- Main Container -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
 
-        <!-- ========================================== -->
-        <!-- TAB 1: BUYER AGENT ARENA -->
-        <!-- ========================================== -->
+        <!-- ==================================================== -->
+        <!-- TAB 1: SHOP WITH AI (ULTRA SIMPLE SHOPPING FLOW) -->
+        <!-- ==================================================== -->
         <div id="buyer-arena" class="tab-content space-y-6">
-            <!-- Header Section -->
-            <div class="border-b border-[#262626] pb-4 flex flex-col md:flex-row md:items-end justify-between gap-3">
-                <div>
-                    <h2 class="text-xl font-semibold text-zinc-100 tracking-tight">Agent-to-Agent Commerce Terminal</h2>
-                    <p class="text-xs text-zinc-400 mt-1">Autonomous quote negotiation between buyer agents and merchant yield models on Razorpay.</p>
-                </div>
-                <div class="flex items-center gap-2 text-xs font-mono text-zinc-500">
-                    <span>STATUS: ACTIVE</span>
-                    <span>•</span>
-                    <span>RAIL: RAZORPAY TURBO UPI</span>
+            <!-- Hero Banner -->
+            <div class="app-card p-6 border-blue-500/30 bg-gradient-to-r from-[#141822] via-[#161d2d] to-[#121927]">
+                <div class="max-w-2xl space-y-2">
+                    <span class="px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-semibold border border-blue-500/20 inline-block">
+                        ⚡ Automatic Price Bargaining
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                        Tell your AI what to buy. It gets you the best deal.
+                    </h1>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Pick an item below or enter your budget. Your AI shopper talks to the store, negotiates bundle discounts, and checks out safely through Razorpay.
+                    </p>
                 </div>
             </div>
 
-            <!-- Two-Column Layout -->
+            <!-- Two-Column Interactive Workspace -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Left: Parameters & Input (5 cols) -->
+                <!-- Left: 1-Click Item Selector & Controls (5 cols) -->
                 <div class="lg:col-span-5 space-y-4">
-                    <div class="terminal-panel p-4 space-y-4">
-                        <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                            <span class="text-xs font-mono text-zinc-400 uppercase">01 / Purchase Intent</span>
-                            <span class="text-[11px] font-mono text-zinc-500">JSON-RPC 2.0</span>
+                    <div class="app-card p-5 space-y-4">
+                        <div class="flex items-center justify-between border-b border-[#242c3d] pb-3">
+                            <h2 class="text-sm font-bold text-white flex items-center gap-2">
+                                <span>1️⃣</span> Pick an Item to Shop
+                            </h2>
+                            <span class="text-xs text-slate-400">Step 1 of 2</span>
                         </div>
 
-                        <!-- Presets -->
-                        <div class="space-y-1.5">
-                            <label class="text-xs font-medium text-zinc-400">Example Scenarios:</label>
-                            <div class="space-y-1.5">
-                                <button onclick="selectPresetPrompt('Get me Sony WH-1000XM5 headphones with protective travel case under ₹27,000 using Razorpay Turbo UPI discount', 'prod_101', 28000)" class="w-full text-left p-2.5 rounded bg-[#0d0d0d] hover:bg-[#181818] border border-[#222222] text-xs transition-colors">
-                                    <div class="font-medium text-zinc-200 flex justify-between">
-                                        <span>Sony WH-1000XM5 + Travel Case</span>
-                                        <span class="font-mono text-zinc-400">₹28k Cap</span>
+                        <!-- Product Selection Cards -->
+                        <div class="space-y-2.5" id="product-card-selector">
+                            <div onclick="selectProductPreset('prod_101', 'Sony WH-1000XM5 Headphones + Travel Case under ₹27,000', 28000)" id="card-prod_101" class="app-card-interactive app-card-selected p-3 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-900/40 text-blue-400 flex items-center justify-center text-lg">🎧</div>
+                                    <div>
+                                        <h3 class="text-xs font-bold text-white">Sony WH-1000XM5 Headphones</h3>
+                                        <p class="text-[11px] text-slate-400">Regular Price: ₹29,990</p>
                                     </div>
-                                    <div class="text-[11px] text-zinc-500 mt-0.5">Bundle rebate & 0% MDR fee pass-through</div>
-                                </button>
-                                <button onclick="selectPresetPrompt('Negotiate ergonomic pro ultra chair with lumbar support cushion for home office under ₹16,000', 'prod_102', 17000)" class="w-full text-left p-2.5 rounded bg-[#0d0d0d] hover:bg-[#181818] border border-[#222222] text-xs transition-colors">
-                                    <div class="font-medium text-zinc-200 flex justify-between">
-                                        <span>Ergonomic Mesh Chair + Lumbar Cushion</span>
-                                        <span class="font-mono text-zinc-400">₹17k Cap</span>
+                                </div>
+                                <span class="text-xs font-bold text-emerald-400">Save ~₹6,000</span>
+                            </div>
+
+                            <div onclick="selectProductPreset('prod_102', 'Ergonomic Office Chair with lumbar cushion under ₹16,000', 17000)" id="card-prod_102" class="app-card-interactive p-3 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-emerald-900/40 text-emerald-400 flex items-center justify-center text-lg">🪑</div>
+                                    <div>
+                                        <h3 class="text-xs font-bold text-white">Ergonomic Office Chair</h3>
+                                        <p class="text-[11px] text-slate-400">Regular Price: ₹18,499</p>
                                     </div>
-                                    <div class="text-[11px] text-zinc-500 mt-0.5">Inventory holding cost margin evaluation</div>
-                                </button>
-                                <button onclick="selectPresetPrompt('Subscribe to CloudScale AI Developer Platform with GPU cluster compute bundle', 'prod_104', 22000)" class="w-full text-left p-2.5 rounded bg-[#0d0d0d] hover:bg-[#181818] border border-[#222222] text-xs transition-colors">
-                                    <div class="font-medium text-zinc-200 flex justify-between">
-                                        <span>CloudScale AI Pro Platform</span>
-                                        <span class="font-mono text-zinc-400">₹22k Cap</span>
+                                </div>
+                                <span class="text-xs font-bold text-emerald-400">Save ~₹4,000</span>
+                            </div>
+
+                            <div onclick="selectProductPreset('prod_103', '34-inch UltraWide Curved Monitor under ₹34,000', 36000)" id="card-prod_103" class="app-card-interactive p-3 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-purple-900/40 text-purple-400 flex items-center justify-center text-lg">🖥️</div>
+                                    <div>
+                                        <h3 class="text-xs font-bold text-white">34-inch UltraWide Monitor</h3>
+                                        <p class="text-[11px] text-slate-400">Regular Price: ₹38,990</p>
                                     </div>
-                                    <div class="text-[11px] text-zinc-500 mt-0.5">Recurring mandate via Razorpay Subscriptions</div>
-                                </button>
+                                </div>
+                                <span class="text-xs font-bold text-emerald-400">Save ~₹7,500</span>
+                            </div>
+
+                            <div onclick="selectProductPreset('prod_104', 'CloudScale AI Developer Platform annual plan under ₹20,000', 22000)" id="card-prod_104" class="app-card-interactive p-3 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-amber-900/40 text-amber-400 flex items-center justify-center text-lg">☁️</div>
+                                    <div>
+                                        <h3 class="text-xs font-bold text-white">CloudScale Developer Pro</h3>
+                                        <p class="text-[11px] text-slate-400">Regular Price: ₹24,000/yr</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-bold text-emerald-400">Save ~₹4,800</span>
                             </div>
                         </div>
 
-                        <!-- Prompt Input -->
-                        <div class="space-y-1">
-                            <label class="text-xs font-medium text-zinc-400">Goal Description:</label>
-                            <textarea id="buyer-goal-input" rows="3" class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2.5 text-xs text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-zinc-500 font-mono leading-relaxed" placeholder="Enter target product and constraints..."></textarea>
+                        <!-- User Prompt / Custom Goal -->
+                        <div class="space-y-1.5 pt-2">
+                            <label class="text-xs font-semibold text-slate-300">Your Instructions to AI:</label>
+                            <input type="text" id="buyer-goal-input" value="Get me Sony WH-1000XM5 headphones with protective travel case under ₹27,000" class="w-full bg-[#0e121a] border border-[#242c3d] rounded-lg p-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500">
                         </div>
 
-                        <!-- Parameters Grid -->
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="space-y-1">
-                                <label class="text-[11px] text-zinc-400">Catalog Reference</label>
-                                <select id="target-product-select" class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2 text-xs text-zinc-200 focus:outline-none focus:border-zinc-500">
-                                    <!-- Populated via JS -->
-                                </select>
+                        <!-- Budget Limit -->
+                        <div class="flex items-center justify-between p-3 rounded-lg bg-[#0e121a] border border-[#242c3d]">
+                            <div>
+                                <span class="text-xs font-semibold text-white block">Maximum Budget Cap</span>
+                                <span class="text-[11px] text-slate-400">AI will never spend above this</span>
                             </div>
-                            <div class="space-y-1">
-                                <label class="text-[11px] text-zinc-400">Budget Limit (₹)</label>
-                                <input type="number" id="buyer-budget-input" value="28000" class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2 text-xs text-zinc-200 focus:outline-none focus:border-zinc-500 font-mono">
+                            <div class="flex items-center gap-1 font-bold text-sm text-emerald-400">
+                                <span>₹</span>
+                                <input type="number" id="buyer-budget-input" value="28000" class="w-20 bg-transparent text-right font-bold text-emerald-400 focus:outline-none">
                             </div>
                         </div>
 
-                        <!-- Payment Rail Optimization Toggle -->
-                        <div class="flex items-center justify-between p-2.5 rounded bg-[#0d0d0d] border border-[#222222]">
-                            <div class="text-xs">
-                                <span class="font-medium text-zinc-200">Razorpay Turbo UPI Rail</span>
-                                <p class="text-[11px] text-zinc-500">Pass-through 0% MDR fee discount</p>
-                            </div>
-                            <input type="checkbox" id="prefer-upi-toggle" checked class="w-4 h-4 rounded text-zinc-100 bg-[#1c1c1c] border-zinc-700">
-                        </div>
+                        <input type="hidden" id="target-product-select" value="prod_101">
+                        <input type="hidden" id="prefer-upi-toggle" value="true">
 
-                        <!-- Action Button -->
-                        <button id="btn-start-negotiation" onclick="startAgentNegotiation()" class="w-full py-2.5 px-4 btn-primary text-xs flex items-center justify-center gap-2">
-                            <span>Execute Negotiation</span>
-                            <span class="font-mono text-[10px]">↵</span>
+                        <!-- Main Action Button -->
+                        <button id="btn-start-negotiation" onclick="startAgentNegotiation()" class="w-full py-3 px-4 btn-blue text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 font-bold">
+                            <span>🤝 Find Best Deal & Bargain Now</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Right: Real-time Live Negotiation Stream & Deal Box (7 cols) -->
+                <!-- Right: Step-by-Step Live Negotiation & Final Deal (7 cols) -->
                 <div class="lg:col-span-7 space-y-4">
-                    <div class="terminal-panel p-4 space-y-3">
-                        <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                            <span class="text-xs font-mono text-zinc-400 uppercase">02 / Execution Trace</span>
-                            <span class="text-[11px] font-mono text-emerald-400">● LIVE</span>
+                    <div class="app-card p-5 space-y-3">
+                        <div class="flex items-center justify-between border-b border-[#242c3d] pb-3">
+                            <h2 class="text-sm font-bold text-white flex items-center gap-2">
+                                <span>2️⃣</span> Live AI Bargaining Conversation
+                            </h2>
+                            <span id="negotiation-status-pill" class="text-xs font-semibold text-blue-400 bg-blue-500/10 px-2.5 py-0.5 rounded-full border border-blue-500/20">
+                                Ready to Start
+                            </span>
                         </div>
 
-                        <!-- Logs Scroll Container -->
-                        <div id="negotiation-stream" class="space-y-2.5 max-h-[440px] overflow-y-auto pr-1 custom-scrollbar font-mono text-xs">
+                        <!-- Negotiation Stream Container -->
+                        <div id="negotiation-stream" class="space-y-2.5 max-h-[380px] overflow-y-auto pr-1 custom-scrollbar text-xs">
                             <!-- Populated dynamically -->
                         </div>
                     </div>
 
-                    <!-- Deal Summary Card (Hidden initially) -->
+                    <!-- Final Deal Card (Hidden until deal locked) -->
                     <div id="deal-summary-box" class="hidden">
-                        <!-- Populated by JS -->
+                        <!-- Populated dynamically -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- TAB 2: MERCHANT AI GROWTH HUB -->
-        <!-- ========================================== -->
+        <!-- ==================================================== -->
+        <!-- TAB 2: STORE OWNER DASHBOARD (SIMPLE METRICS) -->
+        <!-- ==================================================== -->
         <div id="merchant-growth" class="tab-content hidden space-y-6">
-            <!-- Header Section -->
-            <div class="border-b border-[#262626] pb-4">
-                <h2 class="text-xl font-semibold text-zinc-100 tracking-tight">Merchant Yield & Growth Engine</h2>
-                <p class="text-xs text-zinc-400 mt-1">Real-time dynamic pricing elasticity and autonomous conversion optimization on Razorpay.</p>
+            <div class="app-card p-6">
+                <h2 class="text-xl font-bold text-white">🏪 Store Owner & Sales Dashboard</h2>
+                <p class="text-xs text-slate-400 mt-1">See how our AI automatically helps store owners sell more products and recover lost customers on Razorpay.</p>
             </div>
 
-            <!-- Metrics Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                <div class="terminal-panel p-4 space-y-1">
-                    <div class="text-[11px] font-mono text-zinc-500 uppercase">Settled GMV</div>
-                    <div id="growth-gmv" class="text-xl font-semibold text-zinc-100 font-mono">₹4,89,240</div>
-                    <div class="text-[11px] text-emerald-400 font-mono">+28.4% vs baseline</div>
+            <!-- Simple 4 Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="app-card p-4 space-y-1">
+                    <div class="text-xs text-slate-400 font-medium">💰 Total Sales This Month</div>
+                    <div id="growth-gmv" class="text-2xl font-black text-white">₹4,89,240</div>
+                    <div class="text-xs text-emerald-400 font-semibold">📈 +28% higher with AI</div>
                 </div>
 
-                <div class="terminal-panel p-4 space-y-1">
-                    <div class="text-[11px] font-mono text-zinc-500 uppercase">A2A Conversion</div>
-                    <div id="growth-conversion" class="text-xl font-semibold text-zinc-100 font-mono">64.8% (+31.4%)</div>
-                    <div class="text-[11px] text-zinc-400 font-mono">Dynamic bundling</div>
+                <div class="app-card p-4 space-y-1">
+                    <div class="text-xs text-slate-400 font-medium">🎯 Deals Closed by AI</div>
+                    <div id="growth-conversion" class="text-2xl font-black text-white">64.8%</div>
+                    <div class="text-xs text-blue-400 font-semibold">6 out of 10 shoppers bought</div>
                 </div>
 
-                <div class="terminal-panel p-4 space-y-1">
-                    <div class="text-[11px] font-mono text-zinc-500 uppercase">Average Order Value</div>
-                    <div id="growth-aov" class="text-xl font-semibold text-zinc-100 font-mono">₹11,648</div>
-                    <div class="text-[11px] text-zinc-400 font-mono">+42% cross-sell attach</div>
+                <div class="app-card p-4 space-y-1">
+                    <div class="text-xs text-slate-400 font-medium">📦 Average Order Value</div>
+                    <div id="growth-aov" class="text-2xl font-black text-white">₹11,648</div>
+                    <div class="text-xs text-emerald-400 font-semibold">+42% extra items bundled</div>
                 </div>
 
-                <div class="terminal-panel p-4 space-y-1">
-                    <div class="text-[11px] font-mono text-zinc-500 uppercase">Recovered Drop-offs</div>
-                    <div id="growth-recovered" class="text-xl font-semibold text-zinc-100 font-mono">₹98,450 (14 carts)</div>
-                    <div class="text-[11px] text-emerald-400 font-mono">Dynamic Payment Links</div>
-                </div>
-            </div>
-
-            <!-- Middle: Elasticity Matrix & A/B Tests -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Elasticity Matrix (7 cols) -->
-                <div class="lg:col-span-7 terminal-panel p-4 space-y-4">
-                    <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                        <span class="text-xs font-mono text-zinc-400 uppercase">Pricing Elasticity Matrix</span>
-                        <span class="text-[10px] font-mono text-zinc-500">SOLVER: ACTIVE</span>
-                    </div>
-
-                    <div id="elasticity-chart-bars" class="flex items-end justify-between gap-3 pt-6 pb-2">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
-
-                <!-- Experiments (5 cols) -->
-                <div class="lg:col-span-5 terminal-panel p-4 space-y-3">
-                    <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                        <span class="text-xs font-mono text-zinc-400 uppercase">Active Experiments</span>
-                        <button onclick="triggerNewAIExperiment()" class="text-xs font-mono text-zinc-300 hover:text-white">
-                            + Spawn
-                        </button>
-                    </div>
-
-                    <div id="experiments-list" class="space-y-2">
-                        <!-- Populated by JS -->
-                    </div>
+                <div class="app-card p-4 space-y-1">
+                    <div class="text-xs text-slate-400 font-medium">💬 Recovered on WhatsApp</div>
+                    <div id="growth-recovered" class="text-2xl font-black text-emerald-400">₹98,450</div>
+                    <div class="text-xs text-slate-400 font-semibold">14 customers saved</div>
                 </div>
             </div>
 
-            <!-- Transaction Ledger Table -->
-            <div class="terminal-panel p-4 space-y-3">
-                <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                    <span class="text-xs font-mono text-zinc-400 uppercase">Settlement Ledger</span>
-                    <span class="text-[11px] font-mono text-zinc-500">Razorpay API Feed</span>
-                </div>
-
+            <!-- Recent Orders Table -->
+            <div class="app-card p-5 space-y-3">
+                <h3 class="text-sm font-bold text-white">🛒 Recent Completed Purchases</h3>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-xs">
+                    <table class="w-full text-left text-xs border-collapse">
                         <thead>
-                            <tr class="border-b border-[#262626] text-[11px] font-mono text-zinc-500 uppercase">
-                                <th class="py-2 px-2.5">Txn ID</th>
-                                <th class="py-2 px-2.5">Items</th>
-                                <th class="py-2 px-2.5">Agent</th>
-                                <th class="py-2 px-2.5">Settled</th>
-                                <th class="py-2 px-2.5">Rail</th>
-                                <th class="py-2 px-2.5">Status</th>
-                                <th class="py-2 px-2.5">Time</th>
+                            <tr class="border-b border-[#242c3d] text-slate-400 pb-2">
+                                <th class="py-2.5 px-3">Item Purchased</th>
+                                <th class="py-2.5 px-3">Buyer Agent</th>
+                                <th class="py-2.5 px-3">Original Price</th>
+                                <th class="py-2.5 px-3">Final Settled Price</th>
+                                <th class="py-2.5 px-3">Payment Method</th>
+                                <th class="py-2.5 px-3">Status</th>
                             </tr>
                         </thead>
-                        <tbody id="tx-feed-tbody" class="divide-y divide-[#1f1f1f] font-mono">
-                            <!-- Populated by JS -->
+                        <tbody id="tx-feed-tbody" class="divide-y divide-[#1e2535]">
+                            <!-- Populated dynamically -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- TAB 3: VERIFIABLE BUDGET VAULT -->
-        <!-- ========================================== -->
+        <!-- ==================================================== -->
+        <!-- TAB 3: SAFETY & BUDGET CONTROLS (ULTRA SIMPLE) -->
+        <!-- ==================================================== -->
         <div id="budget-vault" class="tab-content hidden space-y-6">
-            <!-- Header Section -->
-            <div class="border-b border-[#262626] pb-4">
-                <h2 class="text-xl font-semibold text-zinc-100 tracking-tight">Verifiable Delegation Vault</h2>
-                <p class="text-xs text-zinc-400 mt-1">Cryptographically enforce spend limits and human-in-the-loop verification on autonomous checkout.</p>
+            <div class="app-card p-6">
+                <h2 class="text-xl font-bold text-white">🛡️ My Spending Safety & Limits</h2>
+                <p class="text-xs text-slate-400 mt-1">Set strict rules so your AI assistant can only spend what you allow, and always asks for permission on big purchases.</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Left: Policy Editor (5 cols) -->
-                <div class="lg:col-span-5 terminal-panel p-4 space-y-4">
-                    <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                        <span class="text-xs font-mono text-zinc-400 uppercase">Policy Parameters</span>
-                        <span class="text-[10px] font-mono text-zinc-500">SHA-256</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="app-card p-5 space-y-4">
+                    <h3 class="text-sm font-bold text-white">⚙️ Adjust Spending Limits</h3>
+
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-semibold text-slate-300">Daily Spending Limit (₹):</label>
+                        <input type="number" id="vault-daily-limit" value="50000" class="w-full bg-[#0e121a] border border-[#242c3d] rounded-lg p-2.5 text-sm font-bold text-white focus:border-blue-500 focus:outline-none">
+                        <p class="text-[11px] text-slate-400">The total amount your AI is allowed to spend across all purchases in 24 hours.</p>
                     </div>
 
-                    <div class="space-y-3">
-                        <div class="space-y-1">
-                            <label class="text-xs text-zinc-400">Daily Spending Ceiling (₹)</label>
-                            <input type="number" id="vault-daily-limit" value="50000" class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2 text-xs text-zinc-100 font-mono focus:border-zinc-500 focus:outline-none">
-                        </div>
-
-                        <div class="space-y-1">
-                            <label class="text-xs text-zinc-400">Single Transaction Cap (₹)</label>
-                            <input type="number" id="vault-single-cap" value="30000" class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2 text-xs text-zinc-100 font-mono focus:border-zinc-500 focus:outline-none">
-                        </div>
-
-                        <div class="space-y-1">
-                            <label class="text-xs text-zinc-400">Human-In-The-Loop Threshold (₹)</label>
-                            <input type="number" id="vault-stepup-threshold" value="20000" class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2 text-xs text-zinc-100 font-mono focus:border-zinc-500 focus:outline-none">
-                            <p class="text-[11px] text-zinc-500">Transactions exceeding this limit require biometric/OTP confirmation.</p>
-                        </div>
-
-                        <div class="pt-2">
-                            <button onclick="saveBudgetSettings()" class="w-full py-2.5 btn-primary text-xs">
-                                Sign & Publish Policy
-                            </button>
-                        </div>
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-semibold text-slate-300">Ask My Approval If An Item Exceeds (₹):</label>
+                        <input type="number" id="vault-stepup-threshold" value="20000" class="w-full bg-[#0e121a] border border-[#242c3d] rounded-lg p-2.5 text-sm font-bold text-white focus:border-blue-500 focus:outline-none">
+                        <p class="text-[11px] text-slate-400">For anything above this amount, the AI will pause and ask for your confirmation before paying.</p>
                     </div>
+
+                    <button onclick="saveBudgetSettings()" class="w-full py-2.5 btn-blue text-xs font-bold">
+                        Save Safety Rules
+                    </button>
                 </div>
 
-                <!-- Right: Active Delegation Tokens (7 cols) -->
-                <div class="lg:col-span-7 terminal-panel p-4 space-y-3">
-                    <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                        <span class="text-xs font-mono text-zinc-400 uppercase">Signed Envelopes</span>
-                        <span class="text-[10px] font-mono text-zinc-500">ED25519 / HMAC</span>
-                    </div>
-
-                    <div id="vault-tokens-list" class="space-y-2.5 font-mono text-xs">
-                        <!-- Populated by JS -->
+                <div class="app-card p-5 space-y-3">
+                    <h3 class="text-sm font-bold text-white">🔒 Active Security Passes</h3>
+                    <div id="vault-tokens-list" class="space-y-2.5 text-xs">
+                        <!-- Populated dynamically -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- TAB 4: ABANDONED CART RECOVERY SIMULATOR -->
-        <!-- ========================================== -->
+        <!-- ==================================================== -->
+        <!-- TAB 4: WHATSAPP CART RECOVERY -->
+        <!-- ==================================================== -->
         <div id="recovery-sim" class="tab-content hidden space-y-6">
-            <!-- Header Section -->
-            <div class="border-b border-[#262626] pb-4">
-                <h2 class="text-xl font-semibold text-zinc-100 tracking-tight">Conversational Cart Recovery</h2>
-                <p class="text-xs text-zinc-400 mt-1">Autonomous AI re-engagement agent generating dynamic time-decaying Razorpay Payment Links.</p>
+            <div class="app-card p-6">
+                <h2 class="text-xl font-bold text-white">💬 WhatsApp Deal Recovery Demo</h2>
+                <p class="text-xs text-slate-400 mt-1">See how the store automatically sends a WhatsApp message with an instant discount link when someone leaves their cart.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Drop-off Profile (4 cols) -->
-                <div class="lg:col-span-4 terminal-panel p-4 space-y-3">
-                    <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                        <span class="text-xs font-mono text-zinc-400 uppercase">Detected Event</span>
-                        <span class="text-[10px] font-mono text-zinc-500">DROP-OFF</span>
-                    </div>
-                    <div id="recovery-user-details">
-                        <!-- Populated by JS -->
+                <!-- Customer Info (4 cols) -->
+                <div class="lg:col-span-4 app-card p-5 space-y-3">
+                    <h3 class="text-sm font-bold text-white">Customer Who Left Cart</h3>
+                    <div id="recovery-user-details" class="space-y-2 text-xs text-slate-300">
+                        <!-- Populated dynamically -->
                     </div>
                 </div>
 
-                <!-- Chat Stream (8 cols) -->
-                <div class="lg:col-span-8 terminal-panel p-4 space-y-3 flex flex-col h-[500px]">
-                    <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                        <span class="text-xs font-mono text-zinc-400 uppercase">Direct Messaging Stream</span>
-                        <span class="text-[10px] font-mono text-emerald-400">SECURE LINK GEN</span>
+                <!-- WhatsApp Chat Frame (8 cols) -->
+                <div class="lg:col-span-8 app-card p-5 space-y-3 flex flex-col h-[480px]">
+                    <div class="flex items-center gap-3 border-b border-[#242c3d] pb-3">
+                        <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center text-white text-sm">💬</div>
+                        <div>
+                            <h4 class="text-xs font-bold text-white">Store AI Assistant (WhatsApp)</h4>
+                            <span class="text-[10px] text-emerald-400 font-medium">● Online</span>
+                        </div>
                     </div>
 
                     <div id="recovery-chat-window" class="flex-1 overflow-y-auto space-y-3 pr-2 custom-scrollbar text-xs">
-                        <!-- Populated by JS -->
+                        <!-- Populated dynamically -->
                     </div>
 
-                    <div class="flex gap-2 pt-2 border-t border-[#262626]">
-                        <input type="text" id="recovery-input-text" placeholder="Type user reply..." class="flex-1 bg-[#0d0d0d] border border-[#262626] rounded px-3 py-2 text-xs text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-zinc-500 font-mono">
-                        <button onclick="sendRecoveryReply()" class="px-4 py-2 btn-secondary text-xs font-mono">
-                            Send
+                    <div class="flex gap-2 pt-2 border-t border-[#242c3d]">
+                        <input type="text" id="recovery-input-text" placeholder="Type a reply as Priya (e.g. Can you give free warranty?)..." class="flex-1 bg-[#0e121a] border border-[#242c3d] rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500">
+                        <button onclick="sendRecoveryReply()" class="px-4 py-2 btn-blue text-xs font-bold">
+                            Send Reply
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- TAB 5: PROTOCOL & WEBHOOK INSPECTOR -->
-        <!-- ========================================== -->
-        <div id="protocol-inspector" class="tab-content hidden space-y-6">
-            <!-- Header Section -->
-            <div class="border-b border-[#262626] pb-4 flex items-center justify-between">
-                <div>
-                    <h2 class="text-xl font-semibold text-zinc-100 tracking-tight">Protocol Packet Stream</h2>
-                    <p class="text-xs text-zinc-400 mt-1">Raw JSON-RPC 2.0 messages exchanged between Buyer and Merchant agents.</p>
-                </div>
-                <button onclick="clearProtocolLogs()" class="px-3 py-1.5 btn-secondary text-xs font-mono">
-                    Clear Logs
-                </button>
-            </div>
-
-            <div class="terminal-panel p-4">
-                <div id="protocol-logs-list" class="space-y-3 max-h-[520px] overflow-y-auto pr-2 custom-scrollbar font-mono text-xs">
-                    <!-- Populated by JS -->
-                </div>
-            </div>
-        </div>
-
-        <!-- ========================================== -->
-        <!-- TAB 6: ABOUT ARCHITECT (PALASH TRIPATHI) -->
-        <!-- ========================================== -->
+        <!-- ==================================================== -->
+        <!-- TAB 5: ABOUT CREATOR (PALASH TRIPATHI) -->
+        <!-- ==================================================== -->
         <div id="about-creator" class="tab-content hidden space-y-6">
-            <!-- Header Section -->
-            <div class="border-b border-[#262626] pb-4">
-                <h2 class="text-xl font-semibold text-zinc-100 tracking-tight">System Architect & Author</h2>
-                <p class="text-xs text-zinc-400 mt-1">Engineering overview, technical architecture, and system design breakdown.</p>
-            </div>
-
-            <!-- Profile Summary Card -->
-            <div class="terminal-panel p-6 space-y-4">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#262626] pb-4">
-                    <div>
-                        <h3 class="text-2xl font-bold text-zinc-100 tracking-tight">Palash Tripathi</h3>
-                        <p class="text-xs font-mono text-zinc-400 mt-0.5">AI Systems & Fintech Architect • Full-Stack Product Engineer</p>
+            <div class="app-card p-6 sm:p-8 space-y-6">
+                <!-- Header Bio -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#242c3d] pb-6">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-blue-600 text-white font-bold text-lg flex items-center justify-center">
+                                PT
+                            </div>
+                            <div>
+                                <h2 class="text-2xl font-black text-white tracking-tight">Palash Tripathi</h2>
+                                <p class="text-xs text-blue-400 font-semibold">AI Systems & Fintech Builder • Full-Stack Engineer</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-[#171717] border border-[#262626] text-zinc-300">
-                            Noida, India
+                        <span class="px-3 py-1 rounded-full bg-[#1c2230] border border-[#2d3748] text-xs text-slate-300 font-medium">
+                            📍 Noida, India
                         </span>
                     </div>
                 </div>
 
-                <p class="text-xs text-zinc-300 leading-relaxed">
-                    Designed and built <strong>RazorNexus</strong> to bridge sovereign AI agents with payment rails. As consumer agents begin autonomous execution, financial infrastructure must support programmatic negotiation, elasticity-aware discounting, and verifiable delegation boundaries.
-                </p>
+                <!-- Plain English Mission -->
+                <div class="space-y-2 text-slate-300 text-sm leading-relaxed">
+                    <h3 class="text-base font-bold text-white">💡 Why I Built RazorNexus:</h3>
+                    <p>
+                        "Today, AI assistants like ChatGPT can write text, but they can't shop or buy things for you. Whenever you want to buy something online, you still have to open multiple tabs, compare bundles, search for coupon codes, and enter card details.
+                    </p>
+                    <p>
+                        I built <strong>RazorNexus</strong> to make AI shopping real. It allows your personal AI to talk directly to store systems, bargain for bundle deals, and safely complete payments through <strong>Razorpay</strong> with strict spending limits so you're always in control."
+                    </p>
+                </div>
 
-                <!-- Technical Contribution Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pt-2">
-                    <div class="terminal-subpanel p-3.5 space-y-1.5">
-                        <div class="text-xs font-mono text-zinc-200 font-semibold">1. A2A Protocol Standard</div>
-                        <p class="text-[11px] text-zinc-400 leading-relaxed">
-                            Formulated the JSON-RPC 2.0 message handshake for agent catalog discovery, quote bargaining, and settlement confirmation.
+                <!-- 4 Simple Feature Highlights -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div class="app-card p-4 space-y-1.5 bg-[#0e121a]">
+                        <h4 class="text-xs font-bold text-white flex items-center gap-1.5">
+                            <span>🤝</span> 1. Automatic Bargaining
+                        </h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Your AI shopper automatically asks the store for bundle discounts (like a free case or warranty) and gets discounts for paying via UPI.
                         </p>
                     </div>
 
-                    <div class="terminal-subpanel p-3.5 space-y-1.5">
-                        <div class="text-xs font-mono text-zinc-200 font-semibold">2. Dynamic Pricing Solver</div>
-                        <p class="text-[11px] text-zinc-400 leading-relaxed">
-                            Implemented the elasticity yield algorithm balancing merchant inventory velocity, holding costs, and payment rail MDR fee rebates.
+                    <div class="app-card p-4 space-y-1.5 bg-[#0e121a]">
+                        <h4 class="text-xs font-bold text-white flex items-center gap-1.5">
+                            <span>🛡️</span> 2. Guaranteed Spending Safety
+                        </h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Set daily limits (like ₹10,000/day). The AI can never spend more than you allow, and big purchases always ask for your permission first.
                         </p>
                     </div>
 
-                    <div class="terminal-subpanel p-3.5 space-y-1.5">
-                        <div class="text-xs font-mono text-zinc-200 font-semibold">3. Verifiable Delegation Vault</div>
-                        <p class="text-[11px] text-zinc-400 leading-relaxed">
-                            Engineered SHA-256 cryptographic spending delegation with velocity caps and threshold-based human-in-the-loop approval gates.
+                    <div class="app-card p-4 space-y-1.5 bg-[#0e121a]">
+                        <h4 class="text-xs font-bold text-white flex items-center gap-1.5">
+                            <span>⚡</span> 3. Instant Razorpay Checkout
+                        </h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Built directly on Razorpay's trusted infrastructure, supporting Instant Turbo UPI QR codes, Cards, and No-Cost EMI options.
                         </p>
                     </div>
 
-                    <div class="terminal-subpanel p-3.5 space-y-1.5">
-                        <div class="text-xs font-mono text-zinc-200 font-semibold">4. Razorpay Gateway Rails</div>
-                        <p class="text-[11px] text-zinc-400 leading-relaxed">
-                            Integrated Razorpay Orders, Turbo UPI Intent, Magic 2.0 profiles, Subscriptions, and HMAC webhook verification.
-                        </p>
-                    </div>
-
-                    <div class="terminal-subpanel p-3.5 space-y-1.5">
-                        <div class="text-xs font-mono text-zinc-200 font-semibold">5. Conversational Recovery</div>
-                        <p class="text-[11px] text-zinc-400 leading-relaxed">
-                            Built the direct-to-consumer AI drop-off recovery agent utilizing dynamic time-decaying Razorpay Payment Links.
-                        </p>
-                    </div>
-
-                    <div class="terminal-subpanel p-3.5 space-y-1.5">
-                        <div class="text-xs font-mono text-zinc-200 font-semibold">6. Zero-Dependency Core</div>
-                        <p class="text-[11px] text-zinc-400 leading-relaxed">
-                            Developed a clean, self-contained architecture runnable immediately in modern browser environments without build overhead.
+                    <div class="app-card p-4 space-y-1.5 bg-[#0e121a]">
+                        <h4 class="text-xs font-bold text-white flex items-center gap-1.5">
+                            <span>💬</span> 4. WhatsApp Cart Recovery
+                        </h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Helps stores automatically re-engage shoppers who left without buying by sending them a limited-time discount link on WhatsApp.
                         </p>
                     </div>
                 </div>
@@ -509,116 +438,116 @@
 
     </main>
 
-    <!-- ========================================== -->
-    <!-- RAZORPAY CHECKOUT MODAL SIMULATOR -->
-    <!-- ========================================== -->
+    <!-- ==================================================== -->
+    <!-- RAZORPAY CHECKOUT MODAL (SIMPLE & CLEAR) -->
+    <!-- ==================================================== -->
     <div id="razorpay-modal" class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 hidden">
-        <div class="bg-[#121212] border border-[#262626] rounded-lg max-w-lg w-full overflow-hidden text-xs">
+        <div class="bg-[#141822] border border-[#242c3d] rounded-2xl max-w-md w-full overflow-hidden text-xs shadow-2xl">
             <!-- Modal Header -->
-            <div class="bg-[#0c2340] p-3.5 text-white flex items-center justify-between border-b border-[#1f3a5f]">
-                <div class="flex items-center gap-2">
-                    <span class="w-5 h-5 bg-blue-500 rounded text-white font-bold flex items-center justify-center text-xs">R</span>
-                    <span class="font-semibold">Razorpay Agentic Checkout</span>
+            <div class="bg-blue-600 p-4 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <span class="w-6 h-6 bg-white text-blue-600 rounded-md font-black flex items-center justify-center text-xs">R</span>
+                    <div>
+                        <h3 class="font-bold text-sm">Razorpay Checkout</h3>
+                        <span id="rzp-modal-order-id" class="text-[10px] text-blue-100 block">Order #rzp_98412</span>
+                    </div>
                 </div>
-                <div class="text-right font-mono">
-                    <span id="rzp-modal-amount" class="font-bold text-sm text-zinc-100">₹26,490</span>
-                    <span id="rzp-modal-order-id" class="text-[10px] text-blue-300 block">order_rzp_98412</span>
+                <div class="text-right">
+                    <span id="rzp-modal-amount" class="font-black text-base block">₹26,490</span>
                 </div>
             </div>
 
-            <!-- Item & Savings -->
-            <div class="bg-[#0d0d0d] px-3.5 py-2 border-b border-[#222222] flex justify-between">
-                <span id="rzp-modal-item-name" class="text-zinc-300">Sony WH-1000XM5 (+ Bundle)</span>
-                <span id="rzp-modal-savings" class="text-emerald-400 font-mono">Saved ₹5,999</span>
+            <!-- Savings Banner -->
+            <div class="bg-emerald-950/60 px-4 py-2 border-b border-emerald-800/40 flex justify-between items-center text-emerald-300">
+                <span id="rzp-modal-item-name" class="font-medium">Sony WH-1000XM5 (+ Travel Case)</span>
+                <span id="rzp-modal-savings" class="font-bold">Saved ₹5,999</span>
             </div>
 
-            <!-- Step-Up Warning (if needed) -->
-            <div id="rzp-stepup-notice" class="hidden bg-[#1c1408] border-b border-[#3d2b0e] p-2.5 text-zinc-300 flex items-start gap-2">
-                <span class="text-amber-400 font-mono text-[10px] uppercase font-bold">[STEP-UP AUTH]</span>
-                <span class="text-[11px]">Transaction exceeds ₹20,000 vault limit. Human authorization required.</span>
+            <!-- Step-Up Approval Notice -->
+            <div id="rzp-stepup-notice" class="hidden bg-amber-950/60 border-b border-amber-800/40 p-3 text-amber-200 flex items-center gap-2">
+                <span>⚠️</span>
+                <span class="text-[11px]">This purchase is over your ₹20,000 limit. Please click below to authorize.</span>
             </div>
 
-            <!-- Payment Methods Tabs -->
-            <div class="p-4 space-y-3">
-                <div class="grid grid-cols-4 gap-1 bg-[#0d0d0d] p-1 rounded border border-[#222222]">
-                    <button id="paytab-btn-turbo-upi" onclick="selectPaymentTab('turbo-upi')" class="py-1.5 text-xs font-medium bg-[#222222] text-white rounded">Turbo UPI</button>
-                    <button id="paytab-btn-cards" onclick="selectPaymentTab('cards')" class="py-1.5 text-xs font-medium text-zinc-400 hover:text-white rounded">Cards</button>
-                    <button id="paytab-btn-emi" onclick="selectPaymentTab('emi')" class="py-1.5 text-xs font-medium text-zinc-400 hover:text-white rounded">EMI</button>
-                    <button id="paytab-btn-magic" onclick="selectPaymentTab('magic')" class="py-1.5 text-xs font-medium text-zinc-400 hover:text-white rounded">Magic 2.0</button>
+            <!-- Payment Options -->
+            <div class="p-4 space-y-4">
+                <div class="grid grid-cols-3 gap-1.5 bg-[#0e121a] p-1 rounded-xl border border-[#242c3d]">
+                    <button id="paytab-btn-turbo-upi" onclick="selectPaymentTab('turbo-upi')" class="py-2 text-xs font-bold bg-blue-600 text-white rounded-lg">⚡ Turbo UPI</button>
+                    <button id="paytab-btn-cards" onclick="selectPaymentTab('cards')" class="py-2 text-xs font-medium text-slate-300 hover:text-white rounded-lg">💳 Cards</button>
+                    <button id="paytab-btn-emi" onclick="selectPaymentTab('emi')" class="py-2 text-xs font-medium text-slate-300 hover:text-white rounded-lg">📅 EMI</button>
                 </div>
 
-                <!-- VIEW 1: TURBO UPI -->
+                <!-- UPI View -->
                 <div id="payview-turbo-upi" class="space-y-3">
-                    <div class="bg-[#0d0d0d] p-4 rounded border border-[#222222] flex flex-col items-center justify-center text-center space-y-2">
-                        <div class="w-32 h-32 bg-white p-1 rounded">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=upi://pay?pa=razorpay@icici&pn=RazorNexus&am=26490&cu=INR" alt="Razorpay QR" class="w-full h-full">
+                    <div class="bg-[#0e121a] p-4 rounded-xl border border-[#242c3d] flex flex-col items-center justify-center text-center space-y-2">
+                        <div class="w-36 h-36 bg-white p-2 rounded-lg shadow-inner">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=upi://pay?pa=razorpay@icici&pn=RazorNexus&am=26490&cu=INR" alt="Razorpay QR" class="w-full h-full">
                         </div>
-                        <p class="text-[11px] text-zinc-400">Scan with Google Pay, PhonePe, or Paytm</p>
+                        <p class="text-xs text-slate-300 font-medium">Scan with Google Pay, PhonePe, or Paytm</p>
+                        <span class="text-[11px] text-emerald-400 font-semibold">✨ Instant ₹750 UPI discount applied!</span>
                     </div>
                 </div>
 
-                <!-- VIEW 2: CARDS -->
+                <!-- Cards View -->
                 <div id="payview-cards" class="hidden space-y-2">
-                    <input type="text" value="4111 •••• •••• 1111" disabled class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2 text-zinc-300 font-mono">
+                    <input type="text" value="4111 •••• •••• 1111 (HDFC Visa)" disabled class="w-full bg-[#0e121a] border border-[#242c3d] rounded-lg p-2.5 text-slate-200 font-mono text-xs">
                     <div class="grid grid-cols-2 gap-2">
-                        <input type="text" value="12/28" disabled class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2 text-zinc-300 font-mono">
-                        <input type="password" value="999" disabled class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2 text-zinc-300 font-mono">
+                        <input type="text" value="12/28" disabled class="w-full bg-[#0e121a] border border-[#242c3d] rounded-lg p-2.5 text-slate-200 font-mono text-xs">
+                        <input type="password" value="999" disabled class="w-full bg-[#0e121a] border border-[#242c3d] rounded-lg p-2.5 text-slate-200 font-mono text-xs">
                     </div>
                 </div>
 
-                <!-- VIEW 3: EMI -->
-                <div id="payview-emi" class="hidden p-3 rounded bg-[#0d0d0d] border border-[#222222] space-y-1">
-                    <div class="flex justify-between font-medium text-zinc-200">
-                        <span>HDFC No-Cost EMI (6M)</span>
-                        <span class="font-mono">₹4,415/mo</span>
+                <!-- EMI View -->
+                <div id="payview-emi" class="hidden p-3.5 rounded-xl bg-[#0e121a] border border-[#242c3d] space-y-1">
+                    <div class="flex justify-between font-bold text-white">
+                        <span>HDFC No-Cost EMI (6 Months)</span>
+                        <span>₹4,415 / mo</span>
                     </div>
+                    <p class="text-[11px] text-emerald-400 font-medium">0% interest charged</p>
                 </div>
 
-                <!-- VIEW 4: MAGIC CHECKOUT -->
-                <div id="payview-magic" class="hidden p-3 rounded bg-[#0d0d0d] border border-[#222222] space-y-1">
-                    <span class="font-medium text-zinc-200 block">Deliver to: Palash Tripathi, Noida (201301)</span>
-                    <span class="text-emerald-400 text-[11px] font-mono">Risk Score: 0.02 (Low Risk)</span>
-                </div>
-
-                <!-- Controls -->
-                <div class="flex gap-2 pt-2">
-                    <button onclick="closeRazorpayModal()" class="py-2 px-3 btn-secondary text-xs">
+                <!-- Action Buttons -->
+                <div class="flex gap-2 pt-1">
+                    <button onclick="closeRazorpayModal()" class="py-2.5 px-4 rounded-xl bg-[#1c2230] hover:bg-[#283248] text-slate-300 text-xs font-semibold">
                         Cancel
                     </button>
-                    <button id="btn-confirm-pay" onclick="executePayment('Razorpay Turbo UPI')" class="flex-1 py-2 px-3 btn-primary text-xs">
-                        Authorize Settlement
+                    <button id="btn-confirm-pay" onclick="executePayment('Razorpay Turbo UPI')" class="flex-1 py-2.5 px-4 btn-green text-xs font-bold shadow-lg shadow-emerald-600/20">
+                        ✅ Complete Payment (₹26,490)
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- SUCCESS MODAL -->
-    <!-- ========================================== -->
+    <!-- ==================================================== -->
+    <!-- PAYMENT SUCCESS CELEBRATION MODAL -->
+    <!-- ==================================================== -->
     <div id="success-modal" class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 hidden text-xs">
-        <div class="bg-[#121212] border border-[#262626] rounded-lg max-w-sm w-full p-5 space-y-4 font-mono">
-            <div class="flex items-center gap-2 text-emerald-400">
-                <span>●</span>
-                <span class="font-semibold text-sm text-zinc-100">Settlement Confirmed</span>
+        <div class="bg-[#141822] border border-[#242c3d] rounded-2xl max-w-sm w-full p-6 space-y-4 text-center shadow-2xl">
+            <div class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 text-2xl flex items-center justify-center mx-auto">
+                🎉
+            </div>
+            <div>
+                <h3 class="text-base font-bold text-white">Payment Successful!</h3>
+                <p class="text-xs text-slate-400 mt-0.5">Your order has been confirmed on Razorpay.</p>
             </div>
 
-            <div class="bg-[#0d0d0d] p-3 rounded border border-[#222222] space-y-1.5">
-                <div class="flex justify-between"><span class="text-zinc-500">Payment ID:</span> <span id="success-payment-id" class="text-zinc-200">pay_9821a</span></div>
-                <div class="flex justify-between"><span class="text-zinc-500">Amount:</span> <span id="success-amount" class="text-zinc-100 font-bold">₹26,490</span></div>
-                <div class="flex justify-between"><span class="text-zinc-500">Method:</span> <span id="success-method" class="text-zinc-300">Razorpay Turbo UPI</span></div>
-                <div class="flex justify-between"><span class="text-zinc-500">Signature:</span> <span id="success-sig" class="text-zinc-500 text-[10px]">rzp_sig_...</span></div>
+            <div class="bg-[#0e121a] p-3.5 rounded-xl border border-[#242c3d] space-y-2 text-left text-xs">
+                <div class="flex justify-between"><span class="text-slate-400">Payment ID:</span> <span id="success-payment-id" class="text-white font-mono font-bold">pay_9821a</span></div>
+                <div class="flex justify-between"><span class="text-slate-400">Total Paid:</span> <span id="success-amount" class="text-emerald-400 font-bold">₹26,490</span></div>
+                <div class="flex justify-between"><span class="text-slate-400">Payment Method:</span> <span id="success-method" class="text-slate-200">Razorpay Turbo UPI</span></div>
+                <div class="flex justify-between"><span class="text-slate-400">Delivery To:</span> <span class="text-slate-200">Palash Tripathi, Noida</span></div>
             </div>
 
-            <button onclick="closeSuccessModal()" class="w-full py-2 btn-primary text-xs">
-                Dismiss
+            <button onclick="closeSuccessModal()" class="w-full py-2.5 btn-blue text-xs font-bold">
+                Done
             </button>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="border-t border-[#1f1f1f] py-6 text-center text-xs text-zinc-500 font-mono">
-        <p>RazorNexus — Engineered by Palash Tripathi</p>
+    <!-- Simple Clean Footer -->
+    <footer class="border-t border-[#242c3d] py-6 text-center text-xs text-slate-400">
+        <p>RazorNexus — Built by Palash Tripathi (Noida, India)</p>
     </footer>
 
     <!-- App JavaScript -->
