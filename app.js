@@ -1,4 +1,4 @@
-// RazorNexus — Simple, Clean & Friendly Multi-Agent Shopping Engine
+// RazorNexus — Multi-Agent Shopping Engine
 // Built by Palash Tripathi (Noida, India)
 
 const state = {
@@ -118,7 +118,7 @@ const state = {
             },
             {
                 sender: 'ai',
-                text: 'Hi Priya! We noticed you left the Sony WH-1000XM5 in your cart. We just created a special ₹2,500 discount + bundled the free protective travel case if you complete your order in the next 15 minutes via UPI.',
+                text: 'Hi Priya, we noticed you left the Sony WH-1000XM5 in your cart. We just created a special ₹2,500 discount + bundled the free protective travel case if you complete your order in the next 15 minutes via UPI.',
                 timestamp: '10 mins ago',
                 hasPaymentLink: true,
                 paymentLink: {
@@ -164,11 +164,11 @@ function switchTab(targetTabId) {
     tabButtons.forEach(b => {
         const t = b.getAttribute('data-tab');
         if (t === targetTabId) {
-            b.classList.add('active-tab', 'text-white', 'bg-blue-600', 'shadow-sm');
-            b.classList.remove('text-slate-300');
+            b.classList.add('active-tab', 'text-zinc-100', 'bg-[#1e1e1e]', 'border', 'border-[#333333]');
+            b.classList.remove('text-zinc-400');
         } else {
-            b.classList.remove('active-tab', 'text-white', 'bg-blue-600', 'shadow-sm');
-            b.classList.add('text-slate-300');
+            b.classList.remove('active-tab', 'text-zinc-100', 'bg-[#1e1e1e]', 'border', 'border-[#333333]');
+            b.classList.add('text-zinc-400');
         }
     });
 
@@ -201,12 +201,11 @@ function renderHeaderStats() {
 // ==========================================
 
 function selectProductPreset(productId, promptText, budget) {
-    // Update active highlight on cards
     document.querySelectorAll('#product-card-selector > div').forEach(card => {
-        card.classList.remove('app-card-selected');
+        card.classList.remove('black-selected');
     });
     const selectedCard = document.getElementById('card-' + productId);
-    if (selectedCard) selectedCard.classList.add('app-card-selected');
+    if (selectedCard) selectedCard.classList.add('black-selected');
 
     const promptInput = document.getElementById('buyer-goal-input');
     const budgetInput = document.getElementById('buyer-budget-input');
@@ -227,7 +226,7 @@ async function startAgentNegotiation() {
     const maxBudget = parseInt(document.getElementById('buyer-budget-input').value) || 28000;
 
     if (!goalInput) {
-        alert('Please pick an item or enter your instructions.');
+        alert('Please select an item or specify instructions.');
         return;
     }
 
@@ -236,10 +235,10 @@ async function startAgentNegotiation() {
     const btn = document.getElementById('btn-start-negotiation');
     const statusPill = document.getElementById('negotiation-status-pill');
     btn.disabled = true;
-    btn.innerHTML = `<span>⏳ AI is bargaining with store...</span>`;
+    btn.innerHTML = `Bargaining in progress...`;
     if (statusPill) {
-        statusPill.textContent = '● Bargaining in Progress...';
-        statusPill.className = 'text-xs font-semibold text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20';
+        statusPill.textContent = '● BARGAINING';
+        statusPill.className = 'text-[11px] font-mono text-amber-400';
     }
 
     state.negotiationLogs = [];
@@ -252,25 +251,25 @@ async function startAgentNegotiation() {
     renderNegotiationTimeline();
 
     // Step 1: Buyer AI Strategy
-    await logAgentStep('buyer', '🔍 Step 1: Checking Item & Budget Rules', [
-        `Looking for: ${targetProduct.name}`,
+    await logAgentStep('buyer', 'Step 1: Item & Spending Limit Check', [
+        `Target: ${targetProduct.name}`,
         `Your Budget Cap: ${formatINR(maxBudget)}`,
         `Safety Check: Authorized within daily limit (${formatINR(state.budgetVault.dailyLimit)})`,
-        `Action: Connecting to store to request initial price...`
+        `Action: Connecting to store pricing agent...`
     ], 800);
 
     // Step 2: Store AI Offer
     const initialStoreOffer = Math.round(targetProduct.base_price * 0.93);
-    await logAgentStep('merchant', '🏪 Step 2: Store Checks Inventory & Gives Offer', [
-        `Store has ${targetProduct.current_inventory} units in stock.`,
+    await logAgentStep('merchant', 'Step 2: Store Inventory Check & First Offer', [
+        `Inventory: ${targetProduct.current_inventory} units in stock`,
         `Regular Retail Price: ${formatINR(targetProduct.base_price)}`,
-        `Store's First Offer: ${formatINR(initialStoreOffer)} (7% off).`
+        `Initial Offer: ${formatINR(initialStoreOffer)} (7% discount)`
     ], 1000);
 
     // Step 3: Buyer AI Counter & Bundle Request
     const targetBundle = targetProduct.bundle_addons[0];
-    await logAgentStep('buyer', '🤝 Step 3: Your AI Asks for a Bundle Deal', [
-        `Your AI: "We can pay right now if you include the ${targetBundle.name} (regular price: ${formatINR(targetBundle.retail_price)}) at a steep discount."`
+    await logAgentStep('buyer', 'Step 3: Buyer Counter & Bundle Proposal', [
+        `Counter Pitch: "We will settle immediately via Razorpay if you bundle the ${targetBundle.name} (regular: ${formatINR(targetBundle.retail_price)}) at a steep discount."`
     ], 1100);
 
     // Step 4: Final Deal Agreement
@@ -280,21 +279,21 @@ async function startAgentNegotiation() {
     const finalPackageTotal = baseSettled + addonSettled - upiDiscount;
     const totalSavings = (targetProduct.base_price + targetBundle.retail_price) - finalPackageTotal;
 
-    await logAgentStep('merchant', '🎉 Step 4: Deal Agreed & Extra UPI Discount Applied!', [
-        `Store agreed to package both items together!`,
+    await logAgentStep('merchant', 'Step 4: Package Agreement & Turbo UPI Rebate Applied', [
+        `Store accepted bundle combination!`,
         `Main Item: ${formatINR(baseSettled)}`,
-        `Bundle Addon (${targetBundle.name}): Only ${formatINR(addonSettled)} (Save ${formatINR(targetBundle.retail_price - addonSettled)})`,
-        `Razorpay Turbo UPI Incentive: Instant -${formatINR(upiDiscount)} off!`,
-        `Final Locked Price: ${formatINR(finalPackageTotal)} (You save ${formatINR(totalSavings)} total!)`
+        `Bundle Accessory (${targetBundle.name}): ${formatINR(addonSettled)} (Save ${formatINR(targetBundle.retail_price - addonSettled)})`,
+        `Razorpay Turbo UPI Incentive: -${formatINR(upiDiscount)} rebate`,
+        `Final Locked Price: ${formatINR(finalPackageTotal)} (Total Savings: ${formatINR(totalSavings)})`
     ], 1200);
 
     // Step 5: Safety Clearance
     const requiresStepUp = finalPackageTotal > state.budgetVault.requireStepUpAbove;
-    await logAgentStep('buyer', '🛡️ Step 5: Safety Verification & Checkout Ready', [
-        `Total ${formatINR(finalPackageTotal)} is within your daily budget.`,
+    await logAgentStep('buyer', 'Step 5: Safety Verification & Clearance', [
+        `Budget Verification: ${formatINR(finalPackageTotal)} is within daily limits.`,
         requiresStepUp 
-            ? `Notice: Amount is above ₹${formatINR(state.budgetVault.requireStepUpAbove)} threshold. Quick 1-click confirmation required.`
-            : `Verified & Ready: 1-Click checkout prepared.`
+            ? `Step-Up Trigger: Order exceeds ₹${formatINR(state.budgetVault.requireStepUpAbove)} threshold. Quick 1-click human confirmation required.`
+            : `Autonomous Clearance: Order ready for settlement.`
     ], 700);
 
     // Save active deal
@@ -309,10 +308,10 @@ async function startAgentNegotiation() {
     };
 
     btn.disabled = false;
-    btn.innerHTML = `<span>🤝 Find Best Deal & Bargain Now</span>`;
+    btn.innerHTML = `<span>Find Best Deal & Bargain</span> <span class="font-mono text-[10px]">↵</span>`;
     if (statusPill) {
-        statusPill.textContent = '✅ Deal Locked!';
-        statusPill.className = 'text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20';
+        statusPill.textContent = '● DEAL LOCKED';
+        statusPill.className = 'text-[11px] font-mono text-emerald-400';
     }
 
     renderNegotiationTimeline();
@@ -340,10 +339,8 @@ function renderNegotiationTimeline() {
 
     if (state.negotiationLogs.length === 0) {
         container.innerHTML = `
-            <div class="py-12 text-center text-slate-400 space-y-2">
-                <div class="text-3xl">🤖 💬 🏪</div>
-                <p class="text-sm font-semibold text-white">No active negotiation yet</p>
-                <p class="text-xs text-slate-400 max-w-sm mx-auto">Pick an item on the left and click <strong>"Find Best Deal & Bargain Now"</strong> to watch your AI bargain live.</p>
+            <div class="py-12 text-center text-zinc-500 font-mono text-xs">
+                Awaiting instruction. Pick an item on the left and click "Find Best Deal & Bargain".
             </div>
         `;
         if (resultBox) resultBox.classList.add('hidden');
@@ -352,18 +349,17 @@ function renderNegotiationTimeline() {
 
     container.innerHTML = state.negotiationLogs.map(log => {
         const isBuyer = log.agentType === 'buyer';
-        const senderBadge = isBuyer 
-            ? `<span class="px-2 py-0.5 bg-blue-500/10 text-blue-400 rounded-md font-bold text-[11px] border border-blue-500/20">👤 Your AI Shopper</span>`
-            : `<span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded-md font-bold text-[11px] border border-emerald-500/20">🏪 Store AI</span>`;
+        const roleLabel = isBuyer ? 'BUYER_AI' : 'STORE_AI';
+        const roleColor = isBuyer ? 'text-zinc-300' : 'text-emerald-400';
 
         return `
-            <div class="p-3.5 rounded-xl bg-[#0e121a] border border-[#242c3d] space-y-2 text-xs">
-                <div class="flex items-center justify-between">
-                    ${senderBadge}
-                    <span class="text-slate-500 text-[11px]">${log.timestamp}</span>
+            <div class="p-3 rounded bg-[#0d0d0d] border border-[#222222] space-y-1.5 font-mono text-xs">
+                <div class="flex items-center justify-between text-[11px]">
+                    <span class="font-semibold ${roleColor}">[${roleLabel}]</span>
+                    <span class="text-zinc-500">${log.timestamp}</span>
                 </div>
-                <h4 class="font-bold text-white text-xs">${log.title}</h4>
-                <div class="space-y-1 text-slate-300 pl-2 border-l-2 border-slate-700">
+                <div class="text-zinc-200 font-medium">${log.title}</div>
+                <div class="space-y-1 text-zinc-400 pl-2 border-l border-[#262626]">
                     ${log.bulletPoints.map(bp => `<div>• ${bp}</div>`).join('')}
                 </div>
             </div>
@@ -372,38 +368,35 @@ function renderNegotiationTimeline() {
 
     container.scrollTop = container.scrollHeight;
 
-    // Render Deal Summary
+    // Render Deal Summary Box
     if (state.activeNegotiation && state.activeNegotiation.deal && resultBox) {
         const d = state.activeNegotiation.deal;
         resultBox.classList.remove('hidden');
         resultBox.innerHTML = `
-            <div class="app-card p-5 space-y-4 border-emerald-500/40 bg-gradient-to-br from-[#141822] to-[#12201c] shadow-xl">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <span class="text-lg">🎉</span>
-                        <h3 class="text-sm font-bold text-white">Best Deal Secured!</h3>
-                    </div>
-                    <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 font-bold text-xs rounded-full border border-emerald-500/30">
-                        You Save ${formatINR(d.savings)} Total!
-                    </span>
+            <div class="black-panel p-4 space-y-3 font-mono text-xs">
+                <div class="flex items-center justify-between border-b border-[#262626] pb-2">
+                    <span class="text-zinc-100 font-semibold uppercase">03 / Negotiated Order Summary</span>
+                    <span class="text-emerald-400">READY_FOR_PAYMENT</span>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 bg-[#0e121a] rounded-xl border border-[#242c3d]">
-                    <div class="space-y-1 text-xs">
-                        <div class="text-white font-bold">${d.product.name}</div>
-                        <div class="text-emerald-400 font-medium">🎁 Includes: ${d.addon.name}</div>
-                        <div class="text-slate-400 text-[11px]">Payment: Razorpay Turbo UPI</div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-zinc-300">
+                    <div class="space-y-1">
+                        <div>Item: <strong>${d.product.name}</strong></div>
+                        <div class="text-emerald-400">Bundle Addon: <strong>${d.addon.name}</strong></div>
+                        <div class="text-zinc-500">Payment: Razorpay Turbo UPI</div>
                     </div>
-                    <div class="sm:text-right space-y-0.5">
-                        <div class="text-slate-400 text-xs line-through">Regular Total: ${formatINR(d.originalTotal)}</div>
-                        <div class="text-xl font-black text-emerald-400">${formatINR(d.finalTotal)}</div>
-                        <div class="text-[11px] text-blue-400 font-medium">Instant ₹750 UPI rebate applied</div>
+                    <div class="space-y-1 sm:text-right">
+                        <div class="text-zinc-500 line-through">Regular Total: ${formatINR(d.originalTotal)}</div>
+                        <div class="text-sm font-bold text-zinc-100">Settlement Total: ${formatINR(d.finalTotal)}</div>
+                        <div class="text-emerald-400 font-semibold">Total Savings: ${formatINR(d.savings)}</div>
                     </div>
                 </div>
 
-                <button onclick="launchRazorpayCheckout()" class="w-full py-3.5 px-4 btn-green text-sm font-bold shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2">
-                    <span>💳 Complete Purchase on Razorpay (${formatINR(d.finalTotal)})</span>
-                </button>
+                <div class="flex gap-2 pt-2 border-t border-[#262626]">
+                    <button onclick="launchRazorpayCheckout()" class="flex-1 py-2.5 px-3 btn-primary text-xs font-semibold">
+                        Pay with Razorpay (${formatINR(d.finalTotal)})
+                    </button>
+                </div>
             </div>
         `;
     }
@@ -428,7 +421,7 @@ function launchRazorpayCheckout() {
         requiresStepUp: deal.requiresStepUp
     };
 
-    document.getElementById('rzp-modal-order-id').textContent = 'Order #' + state.currentCheckoutOrder.orderId;
+    document.getElementById('rzp-modal-order-id').textContent = 'order_' + state.currentCheckoutOrder.orderId;
     document.getElementById('rzp-modal-amount').textContent = formatINR(deal.finalTotal);
     document.getElementById('rzp-modal-item-name').textContent = state.currentCheckoutOrder.item;
     document.getElementById('rzp-modal-savings').textContent = `Saved ${formatINR(deal.savings)}`;
@@ -450,12 +443,12 @@ function selectPaymentTab(tabName) {
         const view = document.getElementById(`payview-${t}`);
         if (t === tabName) {
             if (btn) {
-                btn.className = 'py-2 text-xs font-bold bg-blue-600 text-white rounded-lg';
+                btn.className = 'py-1.5 text-xs font-medium bg-[#222222] text-white rounded';
             }
             if (view) view.classList.remove('hidden');
         } else {
             if (btn) {
-                btn.className = 'py-2 text-xs font-medium text-slate-300 hover:text-white rounded-lg';
+                btn.className = 'py-1.5 text-xs font-medium text-zinc-400 hover:text-white rounded';
             }
             if (view) view.classList.add('hidden');
         }
@@ -472,17 +465,15 @@ function executePayment(paymentMethod) {
 
     const btn = document.getElementById('btn-confirm-pay');
     btn.disabled = true;
-    btn.innerHTML = `<span>⏳ Authorizing on Razorpay...</span>`;
+    btn.innerHTML = `Authorizing...`;
 
     setTimeout(() => {
         const paymentId = 'pay_' + Math.random().toString(36).substring(2, 9);
 
-        // Update state
         state.budgetVault.currentSpent += state.currentCheckoutOrder.amount;
         state.merchantMetrics.totalGmv += state.currentCheckoutOrder.amount;
         state.merchantMetrics.ordersCount += 1;
 
-        // Add to Feed
         state.merchantMetrics.transactionFeed.unshift({
             id: 'txn_' + Math.random().toString(36).substring(2, 6),
             product: state.currentCheckoutOrder.item,
@@ -528,7 +519,7 @@ function renderMerchantGrowth() {
     if (gmvEl) gmvEl.textContent = formatINR(state.merchantMetrics.totalGmv);
     if (convEl) convEl.textContent = `${state.merchantMetrics.conversionRate}%`;
     if (aovEl) aovEl.textContent = formatINR(state.merchantMetrics.averageOrderValue);
-    if (recovEl) recovEl.textContent = formatINR(state.merchantMetrics.recoveredRevenue);
+    if (recovEl) recovEl.textContent = `${formatINR(state.merchantMetrics.recoveredRevenue)} (${state.merchantMetrics.recoveredCartsCount} carts)`;
 
     renderTransactionsTable();
 }
@@ -538,13 +529,13 @@ function renderTransactionsTable() {
     if (!tbody) return;
 
     tbody.innerHTML = state.merchantMetrics.transactionFeed.map(tx => `
-        <tr class="hover:bg-[#1a202c]/50 transition-colors">
-            <td class="py-3 px-3 font-semibold text-white">${tx.product}</td>
-            <td class="py-3 px-3 text-slate-400">${tx.buyerAgent}</td>
-            <td class="py-3 px-3 text-slate-400 line-through">${formatINR(tx.originalPrice)}</td>
-            <td class="py-3 px-3 font-bold text-emerald-400">${formatINR(tx.settledPrice)}</td>
-            <td class="py-3 px-3 text-slate-300">${tx.method}</td>
-            <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-bold text-[11px] border border-emerald-500/20">PAID</span></td>
+        <tr class="hover:bg-[#151515] transition-colors">
+            <td class="py-2.5 px-2.5 font-medium text-zinc-200">${tx.product}</td>
+            <td class="py-2.5 px-2.5 text-zinc-400">${tx.buyerAgent}</td>
+            <td class="py-2.5 px-2.5 text-zinc-500 line-through">${formatINR(tx.originalPrice)}</td>
+            <td class="py-2.5 px-2.5 font-bold text-zinc-100">${formatINR(tx.settledPrice)}</td>
+            <td class="py-2.5 px-2.5 text-zinc-400">${tx.method}</td>
+            <td class="py-2.5 px-2.5"><span class="text-emerald-400 font-semibold">PAID</span></td>
         </tr>
     `).join('');
 }
@@ -563,15 +554,17 @@ function renderBudgetVault() {
 
     if (tokensList) {
         tokensList.innerHTML = `
-            <div class="p-3 rounded-xl bg-[#0e121a] border border-[#242c3d] space-y-1.5">
+            <div class="p-3 rounded bg-[#0d0d0d] border border-[#222222] space-y-1 font-mono text-xs">
                 <div class="flex items-center justify-between">
-                    <span class="font-bold text-white text-xs">🛍️ General Shopping Pass</span>
-                    <span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-bold text-[10px]">ACTIVE</span>
+                    <span class="font-semibold text-zinc-200">tok_deleg_984a1</span>
+                    <span class="text-emerald-400">ACTIVE</span>
                 </div>
-                <div class="text-slate-400 text-[11px]">
-                    Max Spend Cap: <strong class="text-white">${formatINR(state.budgetVault.dailyLimit)}</strong>
+                <div class="text-zinc-400 text-[11px]">
+                    Scope: shopping.general.autonomous | Cap: ${formatINR(state.budgetVault.dailyLimit)}
                 </div>
-                <p class="text-slate-500 text-[10px]">Protects against unauthorized or accidental spending.</p>
+                <div class="text-zinc-500 text-[10px]">
+                    Enforces strict daily spend limits and human step-up authorization.
+                </div>
             </div>
         `;
     }
@@ -585,7 +578,7 @@ function saveBudgetSettings() {
     state.budgetVault.requireStepUpAbove = stepUp;
 
     renderAll();
-    alert('✅ Safety rules saved! Your AI will strictly follow these spending limits.');
+    alert('Safety rules saved. New spending authorization token published.');
 }
 
 // ==========================================
@@ -599,11 +592,11 @@ function renderRecoverySim() {
 
     if (detailsBox) {
         detailsBox.innerHTML = `
-            <div class="space-y-2">
-                <div><span class="text-slate-400 block text-[11px]">Customer:</span> <strong class="text-white">${user.name}</strong></div>
-                <div><span class="text-slate-400 block text-[11px]">Item Left Behind:</span> <strong class="text-white">${user.cartItem}</strong></div>
-                <div><span class="text-slate-400 block text-[11px]">Cart Value:</span> <strong class="text-emerald-400">${formatINR(user.cartValue)}</strong></div>
-                <div><span class="text-slate-400 block text-[11px]">Drop-off Stage:</span> <span class="text-amber-400">${user.dropOffStage}</span></div>
+            <div class="space-y-1.5">
+                <div><span class="text-zinc-500">Customer:</span> <span class="text-zinc-200">${user.name}</span></div>
+                <div><span class="text-zinc-500">Item:</span> <span class="text-zinc-200">${user.cartItem}</span></div>
+                <div><span class="text-zinc-500">Cart Value:</span> <span class="text-zinc-100 font-bold">${formatINR(user.cartValue)}</span></div>
+                <div><span class="text-zinc-500">Drop-off:</span> <span class="text-amber-400">${user.dropOffStage}</span></div>
             </div>
         `;
     }
@@ -613,7 +606,7 @@ function renderRecoverySim() {
             if (msg.sender === 'system') {
                 return `
                     <div class="flex justify-center my-2">
-                        <span class="text-[11px] bg-[#1c2230] text-slate-400 px-3 py-1 rounded-full border border-[#2d3748]">
+                        <span class="text-[10px] bg-[#141414] text-zinc-500 px-2.5 py-1 rounded border border-[#222222] font-mono">
                             ${msg.text}
                         </span>
                     </div>
@@ -623,24 +616,24 @@ function renderRecoverySim() {
             const isAI = msg.sender === 'ai';
             return `
                 <div class="flex ${isAI ? 'justify-start' : 'justify-end'} mb-3">
-                    <div class="max-w-[85%] ${isAI ? 'bg-[#1a2130] text-slate-200 rounded-tl-none border border-[#2d3a52]' : 'bg-blue-600 text-white rounded-tr-none'} p-3.5 rounded-2xl shadow space-y-2">
-                        <div class="flex items-center justify-between gap-4 text-[10px] ${isAI ? 'text-blue-400' : 'text-blue-100'} font-bold">
-                            <span>${isAI ? '🤖 Store AI' : '👤 ' + user.name}</span>
-                            <span class="text-slate-400">${msg.timestamp}</span>
+                    <div class="max-w-[85%] ${isAI ? 'bg-[#141414] text-zinc-200 rounded-tl-none border border-[#262626]' : 'bg-[#1f2420] text-zinc-100 rounded-tr-none border border-emerald-800/40'} p-3 rounded-lg shadow space-y-2 font-mono">
+                        <div class="flex items-center justify-between gap-4 text-[10px] ${isAI ? 'text-zinc-400' : 'text-emerald-300'} font-semibold">
+                            <span>${isAI ? 'STORE_AI' : user.name}</span>
+                            <span class="text-zinc-600">${msg.timestamp}</span>
                         </div>
-                        <p class="text-xs leading-relaxed">${msg.text}</p>
+                        <p class="text-xs leading-relaxed font-sans">${msg.text}</p>
                         ${msg.hasPaymentLink ? `
-                            <div class="mt-2 p-3 bg-[#0c1018] rounded-xl border border-emerald-500/40 space-y-2">
-                                <div class="flex items-center justify-between text-xs">
-                                    <span class="font-bold text-white">Razorpay Discount Link</span>
+                            <div class="mt-2 p-2.5 bg-[#0a0a0a] rounded border border-[#262626] space-y-1.5">
+                                <div class="flex items-center justify-between text-xs font-mono">
+                                    <span class="text-zinc-300">Razorpay Payment Link</span>
                                     <span class="text-emerald-400 font-bold">${formatINR(msg.paymentLink.amount)}</span>
                                 </div>
-                                <div class="flex items-center justify-between text-[11px] text-slate-400">
+                                <div class="flex items-center justify-between text-[10px] text-zinc-500 font-mono">
                                     <span class="line-through">Regular: ${formatINR(msg.paymentLink.discountedFrom)}</span>
-                                    <span class="text-amber-400 font-bold">Expires in ${msg.paymentLink.expiresIn}</span>
+                                    <span class="text-amber-400">Expires in ${msg.paymentLink.expiresIn}</span>
                                 </div>
-                                <button onclick="settleRecoveryPaymentLink('${msg.paymentLink.id}', ${msg.paymentLink.amount})" class="w-full py-2 btn-green text-xs font-bold shadow flex items-center justify-center gap-1.5">
-                                    <span>⚡ Pay ${formatINR(msg.paymentLink.amount)} via Razorpay UPI</span>
+                                <button onclick="settleRecoveryPaymentLink('${msg.paymentLink.id}', ${msg.paymentLink.amount})" class="w-full py-1.5 btn-primary text-xs font-mono">
+                                    Pay ${formatINR(msg.paymentLink.amount)} via UPI
                                 </button>
                             </div>
                         ` : ''}
@@ -668,7 +661,7 @@ function sendRecoveryReply() {
     setTimeout(() => {
         state.recoverySim.chatHistory.push({
             sender: 'ai',
-            text: `Thanks for the reply, ${state.recoverySim.activeUser.name.split(' ')[0]}! We've also added the 1-year extended warranty for free. You can finish your order directly through the link above whenever you're ready!`,
+            text: `Thanks for the reply, ${state.recoverySim.activeUser.name.split(' ')[0]}. We've also included the 1-year warranty for free. You can finish your order directly through the link above whenever you're ready.`,
             timestamp: 'Just now',
             hasPaymentLink: false
         });
@@ -695,10 +688,10 @@ function settleRecoveryPaymentLink(linkId, amount) {
 
     state.recoverySim.chatHistory.push({
         sender: 'system',
-        text: `✅ Payment of ${formatINR(amount)} confirmed on Razorpay. Order completed!`,
+        text: `Payment link ${linkId} settled for ${formatINR(amount)}. Order marked as PAID in Razorpay.`,
         timestamp: 'Just now'
     });
 
     renderAll();
-    alert(`🎉 Success! Payment link settled for ${formatINR(amount)}. Cart recovered!`);
+    alert(`Payment link settled for ${formatINR(amount)}. Order confirmed.`);
 }

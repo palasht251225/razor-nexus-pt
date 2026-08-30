@@ -1,24 +1,29 @@
-/* RazorNexus — Simple, Clean & Friendly Modern UI */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+/* RazorNexus — Premium Minimalist Black Design System */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-    --bg-main: #0c0f14;
-    --bg-card: #141822;
-    --bg-card-hover: #1a202c;
-    --bg-subtle: #1c2230;
-    --border: #242c3d;
-    --border-focus: #3b82f6;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --accent-blue: #3b82f6;
-    --accent-green: #10b981;
-    --accent-amber: #f59e0b;
+    --bg-main: #0a0a0a;
+    --bg-card: #121212;
+    --bg-subtle: #171717;
+    --bg-elevated: #1e1e1e;
+    --border: #262626;
+    --border-subtle: #1f1f1f;
+    --border-hover: #404040;
+    --text-primary: #ededed;
+    --text-secondary: #a1a1a1;
+    --text-muted: #737373;
+    --accent: #f59e0b;
+    --accent-emerald: #10b981;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
     background-color: var(--bg-main);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: var(--text-main);
+    color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
 }
 
@@ -26,67 +31,79 @@ body {
     font-family: 'JetBrains Mono', monospace;
 }
 
-/* Clean Friendly Card */
-.app-card {
+/* Premium Black Panels */
+.black-panel {
     background-color: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    transition: all 0.2s ease;
+    border-radius: 8px;
 }
 
-.app-card:hover {
-    border-color: #334155;
+.black-subpanel {
+    background-color: #0d0d0d;
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
 }
 
-.app-card-interactive {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
+.black-interactive {
+    background-color: #0d0d0d;
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.app-card-interactive:hover {
-    background-color: var(--bg-card-hover);
-    border-color: #3b82f6;
-    transform: translateY(-2px);
-}
-
-.app-card-selected {
-    background-color: #151d2f;
-    border-color: #3b82f6;
-}
-
-/* Primary Button */
-.btn-blue {
-    background-color: #2563eb;
-    color: #ffffff;
-    font-weight: 600;
-    border-radius: 10px;
     transition: all 0.15s ease;
 }
 
-.btn-blue:hover {
-    background-color: #1d4ed8;
-    transform: translateY(-1px);
+.black-interactive:hover {
+    background-color: #171717;
+    border-color: var(--border-hover);
+}
+
+.black-selected {
+    background-color: #171717;
+    border-color: #ededed;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #ededed;
+    color: #0a0a0a;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: background-color 0.15s ease;
+}
+
+.btn-primary:hover {
+    background-color: #ffffff;
+}
+
+.btn-secondary {
+    background-color: #171717;
+    color: #ededed;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.15s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #222222;
+    border-color: #404040;
 }
 
 .btn-green {
-    background-color: #059669;
-    color: #ffffff;
-    font-weight: 600;
-    border-radius: 10px;
-    transition: all 0.15s ease;
+    background-color: #10b981;
+    color: #0a0a0a;
+    font-weight: 700;
+    border-radius: 6px;
+    transition: background-color 0.15s ease;
 }
 
 .btn-green:hover {
-    background-color: #047857;
+    background-color: #059669;
 }
 
 /* Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 4px;
+    height: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -94,10 +111,10 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #334155;
-    border-radius: 10px;
+    background: #2a2a2a;
+    border-radius: 2px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    background: #444444;
 }
