@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,22 +8,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        zinc: {
-                            950: '#0a0a0a',
-                            900: '#121212',
-                            850: '#171717',
-                            800: '#262626',
-                            700: '#3f3f46',
-                            600: '#52525b',
-                            500: '#71717a',
-                            400: '#a1a1aa',
-                            300: '#d4d4d8',
-                            200: '#e4e4e7',
-                            100: '#f4f4f5'
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e'
                         }
                     },
                     fontFamily: {
@@ -38,60 +33,63 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-[#0a0a0a] text-[#ededed] font-sans min-h-screen flex flex-col antialiased selection:bg-zinc-700 selection:text-white">
+<body class="bg-[#f8fafc] text-[#0f172a] font-sans min-h-screen flex flex-col antialiased selection:bg-blue-100 selection:text-blue-900">
 
-    <!-- Minimalist Top Navigation -->
-    <header class="border-b border-[#262626] bg-[#0a0a0a] sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+    <!-- Top Navigation Header -->
+    <header class="border-b border-slate-200 bg-white/90 backdrop-blur sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <!-- Brand -->
             <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded bg-zinc-100 flex items-center justify-center text-black font-bold text-xs">
+                <div class="w-8 h-8 rounded-lg bg-sky-600 flex items-center justify-center text-white font-black text-sm shadow-sm">
                     RN
                 </div>
-                <div class="flex items-center gap-2">
-                    <span class="font-semibold text-sm tracking-tight text-zinc-100">RazorNexus</span>
-                    <span class="text-[11px] font-mono text-zinc-500 border-l border-zinc-800 pl-2">AI Shopping on Razorpay</span>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-base tracking-tight text-slate-900">RazorNexus</span>
+                        <span class="text-[10px] font-semibold uppercase tracking-wider bg-sky-50 text-sky-700 border border-sky-200 px-1.5 py-0.5 rounded">A2A</span>
+                    </div>
+                    <span class="text-xs text-slate-500 block -mt-0.5">AI Shopping & Payments on Razorpay</span>
                 </div>
             </div>
 
             <!-- Navigation Tabs -->
-            <nav class="hidden md:flex items-center gap-1">
-                <button data-tab="buyer-arena" class="nav-tab active-tab px-3 py-1.5 text-xs font-medium rounded text-zinc-100 bg-[#1e1e1e] border border-[#333333] transition-colors">
+            <nav class="hidden md:flex items-center gap-1 bg-slate-100/80 p-1 rounded-xl border border-slate-200">
+                <button data-tab="buyer-arena" class="nav-tab active-tab px-3.5 py-1.5 text-xs font-semibold rounded-lg text-slate-900 bg-white shadow-sm border border-slate-200/80 transition-all">
                     Shop with AI
                 </button>
-                <button data-tab="merchant-growth" class="nav-tab px-3 py-1.5 text-xs font-medium rounded text-zinc-400 hover:text-zinc-200 transition-colors">
+                <button data-tab="merchant-growth" class="nav-tab px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all">
                     Store Dashboard
                 </button>
-                <button data-tab="budget-vault" class="nav-tab px-3 py-1.5 text-xs font-medium rounded text-zinc-400 hover:text-zinc-200 transition-colors">
+                <button data-tab="budget-vault" class="nav-tab px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all">
                     Safety & Budget
                 </button>
-                <button data-tab="recovery-sim" class="nav-tab px-3 py-1.5 text-xs font-medium rounded text-zinc-400 hover:text-zinc-200 transition-colors">
+                <button data-tab="recovery-sim" class="nav-tab px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all">
                     WhatsApp Recovery
                 </button>
-                <button data-tab="about-creator" class="nav-tab px-3 py-1.5 text-xs font-medium rounded text-zinc-400 hover:text-zinc-200 transition-colors">
+                <button data-tab="about-creator" class="nav-tab px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all">
                     About Creator
                 </button>
             </nav>
 
             <!-- Right Status & Author Badge -->
             <div class="flex items-center gap-3">
-                <div class="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded bg-[#141414] border border-[#262626] text-xs font-mono text-zinc-400">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs font-medium text-slate-700">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
                     <span id="header-budget-text">Daily Budget: ₹50,000</span>
                 </div>
-                <button onclick="switchTab('about-creator')" class="px-2.5 py-1 rounded border border-[#262626] hover:border-[#404040] text-xs text-zinc-300 transition-colors font-mono">
+                <button onclick="switchTab('about-creator')" class="px-3 py-1.5 rounded-lg border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-xs font-medium text-slate-700 shadow-sm transition-all">
                     Palash Tripathi
                 </button>
             </div>
         </div>
 
         <!-- Mobile Navigation Strip -->
-        <div class="md:hidden flex overflow-x-auto gap-1 border-t border-[#1f1f1f] px-3 py-1.5 custom-scrollbar">
-            <button data-tab="buyer-arena" class="nav-tab active-tab px-3 py-1 text-xs text-zinc-100 bg-[#1e1e1e] rounded whitespace-nowrap">Shop with AI</button>
-            <button data-tab="merchant-growth" class="nav-tab px-3 py-1 text-xs text-zinc-400 whitespace-nowrap">Store Dashboard</button>
-            <button data-tab="budget-vault" class="nav-tab px-3 py-1 text-xs text-zinc-400 whitespace-nowrap">Safety & Budget</button>
-            <button data-tab="recovery-sim" class="nav-tab px-3 py-1 text-xs text-zinc-400 whitespace-nowrap">WhatsApp Recovery</button>
-            <button data-tab="about-creator" class="nav-tab px-3 py-1 text-xs text-zinc-400 whitespace-nowrap">About Creator</button>
+        <div class="md:hidden flex overflow-x-auto gap-1 border-t border-slate-200 px-3 py-1.5 bg-slate-50 custom-scrollbar">
+            <button data-tab="buyer-arena" class="nav-tab active-tab px-3 py-1 text-xs text-slate-900 bg-white shadow-sm rounded-md font-semibold whitespace-nowrap">Shop with AI</button>
+            <button data-tab="merchant-growth" class="nav-tab px-3 py-1 text-xs text-slate-600 whitespace-nowrap">Store Dashboard</button>
+            <button data-tab="budget-vault" class="nav-tab px-3 py-1 text-xs text-slate-600 whitespace-nowrap">Safety & Budget</button>
+            <button data-tab="recovery-sim" class="nav-tab px-3 py-1 text-xs text-slate-600 whitespace-nowrap">WhatsApp Recovery</button>
+            <button data-tab="about-creator" class="nav-tab px-3 py-1 text-xs text-slate-600 whitespace-nowrap">About Creator</button>
         </div>
     </header>
 
@@ -103,13 +101,13 @@
         <!-- ========================================== -->
         <div id="buyer-arena" class="tab-content space-y-6">
             <!-- Header Section -->
-            <div class="border-b border-[#262626] pb-4 flex flex-col md:flex-row md:items-end justify-between gap-3">
+            <div class="border-b border-slate-200 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-3">
                 <div>
-                    <h2 class="text-xl font-semibold text-zinc-100 tracking-tight">AI Smart Shopper</h2>
-                    <p class="text-xs text-zinc-400 mt-1">Tell your AI what to buy. It talks to the store, bargains for bundle discounts, and completes payment on Razorpay.</p>
+                    <h2 class="text-2xl font-bold text-slate-900 tracking-tight">AI Smart Shopper</h2>
+                    <p class="text-sm text-slate-600 mt-1">Tell your AI what to buy. It negotiates bundle discounts with store backends and completes checkout securely on Razorpay.</p>
                 </div>
-                <div class="flex items-center gap-2 text-xs font-mono text-zinc-500">
-                    <span id="shopping-status-badge" class="text-emerald-400">● READY</span>
+                <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                    <span id="shopping-status-badge" class="text-emerald-600 font-semibold">● READY</span>
                     <span>•</span>
                     <span>PAYMENT: RAZORPAY TURBO UPI</span>
                 </div>
@@ -119,69 +117,69 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 <!-- Left: Product Selection & Controls (5 cols) -->
                 <div class="lg:col-span-5 space-y-4">
-                    <div class="black-panel p-4 space-y-4">
-                        <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                            <span class="text-xs font-mono text-zinc-400 uppercase">01 / Choose an Item</span>
-                            <span class="text-[11px] font-mono text-zinc-500">1-Click Selection</span>
+                    <div class="light-panel p-5 space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                            <span class="text-xs font-bold text-slate-900 uppercase tracking-wide">01 / Pick an Item to Shop</span>
+                            <span class="text-xs text-slate-400 font-medium">1-Click Selection</span>
                         </div>
 
                         <!-- 4 Clean Product Selector Cards -->
-                        <div class="space-y-2" id="product-card-selector">
-                            <div onclick="selectProductPreset('prod_101', 'Get me Sony WH-1000XM5 headphones with protective travel case under ₹27,000', 28000)" id="card-prod_101" class="black-interactive black-selected p-3 flex items-center justify-between">
+                        <div class="space-y-2.5" id="product-card-selector">
+                            <div onclick="selectProductPreset('prod_101', 'Get me Sony WH-1000XM5 headphones with protective travel case under ₹27,000', 28000)" id="card-prod_101" class="light-interactive light-selected p-3.5 flex items-center justify-between">
                                 <div class="space-y-0.5">
-                                    <div class="font-medium text-xs text-zinc-200">Sony WH-1000XM5 Headphones</div>
-                                    <div class="text-[11px] text-zinc-500 font-mono">Regular: ₹29,990 + Travel Case</div>
+                                    <div class="font-semibold text-xs text-slate-900">Sony WH-1000XM5 Headphones</div>
+                                    <div class="text-xs text-slate-500">Regular: ₹29,990 + Travel Case</div>
                                 </div>
-                                <span class="text-xs font-mono text-emerald-400 font-semibold">Save ~₹6k</span>
+                                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Save ~₹6k</span>
                             </div>
 
-                            <div onclick="selectProductPreset('prod_102', 'Negotiate ergonomic pro chair with lumbar support cushion under ₹16,000', 17000)" id="card-prod_102" class="black-interactive p-3 flex items-center justify-between">
+                            <div onclick="selectProductPreset('prod_102', 'Negotiate ergonomic pro chair with lumbar support cushion under ₹16,000', 17000)" id="card-prod_102" class="light-interactive p-3.5 flex items-center justify-between">
                                 <div class="space-y-0.5">
-                                    <div class="font-medium text-xs text-zinc-200">Ergonomic Office Chair</div>
-                                    <div class="text-[11px] text-zinc-500 font-mono">Regular: ₹18,499 + Lumbar Cushion</div>
+                                    <div class="font-semibold text-xs text-slate-900">Ergonomic Office Chair</div>
+                                    <div class="text-xs text-slate-500">Regular: ₹18,499 + Lumbar Cushion</div>
                                 </div>
-                                <span class="text-xs font-mono text-emerald-400 font-semibold">Save ~₹4k</span>
+                                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Save ~₹4k</span>
                             </div>
 
-                            <div onclick="selectProductPreset('prod_103', 'Find 34-inch UltraWide curved monitor under ₹34,000', 36000)" id="card-prod_103" class="black-interactive p-3 flex items-center justify-between">
+                            <div onclick="selectProductPreset('prod_103', 'Find 34-inch UltraWide curved monitor under ₹34,000', 36000)" id="card-prod_103" class="light-interactive p-3.5 flex items-center justify-between">
                                 <div class="space-y-0.5">
-                                    <div class="font-medium text-xs text-zinc-200">34-inch UltraWide Monitor</div>
-                                    <div class="text-[11px] text-zinc-500 font-mono">Regular: ₹38,990 + Monitor Arm</div>
+                                    <div class="font-semibold text-xs text-slate-900">34-inch UltraWide Monitor</div>
+                                    <div class="text-xs text-slate-500">Regular: ₹38,990 + Monitor Arm</div>
                                 </div>
-                                <span class="text-xs font-mono text-emerald-400 font-semibold">Save ~₹7.5k</span>
+                                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Save ~₹7.5k</span>
                             </div>
 
-                            <div onclick="selectProductPreset('prod_104', 'Subscribe to CloudScale AI Developer Platform annual plan under ₹20,000', 22000)" id="card-prod_104" class="black-interactive p-3 flex items-center justify-between">
+                            <div onclick="selectProductPreset('prod_104', 'Subscribe to CloudScale AI Developer Platform annual plan under ₹20,000', 22000)" id="card-prod_104" class="light-interactive p-3.5 flex items-center justify-between">
                                 <div class="space-y-0.5">
-                                    <div class="font-medium text-xs text-zinc-200">CloudScale Developer Pro</div>
-                                    <div class="text-[11px] text-zinc-500 font-mono">Regular: ₹24,000/yr + GPU Bundle</div>
+                                    <div class="font-semibold text-xs text-slate-900">CloudScale Developer Pro</div>
+                                    <div class="text-xs text-slate-500">Regular: ₹24,000/yr + GPU Cluster</div>
                                 </div>
-                                <span class="text-xs font-mono text-emerald-400 font-semibold">Save ~₹4.8k</span>
+                                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Save ~₹4.8k</span>
                             </div>
                         </div>
 
                         <!-- Instructions Input -->
-                        <div class="space-y-1">
-                            <label class="text-xs font-medium text-zinc-400">Your Instructions to AI:</label>
-                            <textarea id="buyer-goal-input" rows="2" class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2.5 text-xs text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-zinc-500 font-mono leading-relaxed">Get me Sony WH-1000XM5 headphones with protective travel case under ₹27,000</textarea>
+                        <div class="space-y-1.5 pt-1">
+                            <label class="text-xs font-semibold text-slate-700">Your Instructions to AI:</label>
+                            <textarea id="buyer-goal-input" rows="2" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-sky-600 focus:bg-white transition-colors leading-relaxed">Get me Sony WH-1000XM5 headphones with protective travel case under ₹27,000</textarea>
                         </div>
 
                         <!-- Budget Cap -->
-                        <div class="flex items-center justify-between p-2.5 rounded bg-[#0d0d0d] border border-[#222222]">
-                            <div class="text-xs">
-                                <span class="font-medium text-zinc-200">Maximum Budget Limit</span>
-                                <p class="text-[11px] text-zinc-500">AI will never spend above this</p>
+                        <div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 border border-slate-200">
+                            <div>
+                                <span class="text-xs font-semibold text-slate-900 block">Maximum Budget Limit</span>
+                                <p class="text-[11px] text-slate-500">AI will never spend above this limit</p>
                             </div>
-                            <div class="flex items-center gap-1 font-mono text-xs text-zinc-200">
+                            <div class="flex items-center gap-1 text-sm font-bold text-slate-900">
                                 <span>₹</span>
-                                <input type="number" id="buyer-budget-input" value="28000" class="w-16 bg-transparent text-right font-mono text-zinc-200 focus:outline-none border-b border-[#333333]">
+                                <input type="number" id="buyer-budget-input" value="28000" class="w-20 bg-transparent text-right font-bold text-slate-900 focus:outline-none border-b border-slate-300">
                             </div>
                         </div>
 
                         <input type="hidden" id="target-product-select" value="prod_101">
 
                         <!-- Main Action Button -->
-                        <button id="btn-start-negotiation" onclick="startAgentNegotiation()" class="w-full py-2.5 px-4 btn-primary text-xs flex items-center justify-center gap-2">
+                        <button id="btn-start-negotiation" onclick="startAgentNegotiation()" class="w-full py-3 px-4 btn-brand text-xs flex items-center justify-center gap-2 shadow-sm">
                             <span>Find Best Deal & Bargain</span>
                             <span class="font-mono text-[10px]">↵</span>
                         </button>
@@ -190,14 +188,14 @@
 
                 <!-- Right: Live Bargaining Trace & Settled Deal Box (7 cols) -->
                 <div class="lg:col-span-7 space-y-4">
-                    <div class="black-panel p-4 space-y-3">
-                        <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                            <span class="text-xs font-mono text-zinc-400 uppercase">02 / Live AI Bargaining Conversation</span>
-                            <span id="negotiation-status-pill" class="text-[11px] font-mono text-emerald-400">● READY</span>
+                    <div class="light-panel p-5 space-y-3">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                            <span class="text-xs font-bold text-slate-900 uppercase tracking-wide">02 / Live AI Bargaining Conversation</span>
+                            <span id="negotiation-status-pill" class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">● READY</span>
                         </div>
 
                         <!-- Logs Scroll Container -->
-                        <div id="negotiation-stream" class="space-y-2 max-h-[400px] overflow-y-auto pr-1 custom-scrollbar font-mono text-xs">
+                        <div id="negotiation-stream" class="space-y-2.5 max-h-[420px] overflow-y-auto pr-1 custom-scrollbar text-xs">
                             <!-- Populated dynamically -->
                         </div>
                     </div>
@@ -214,58 +212,58 @@
         <!-- TAB 2: STORE DASHBOARD -->
         <!-- ========================================== -->
         <div id="merchant-growth" class="tab-content hidden space-y-6">
-            <div class="border-b border-[#262626] pb-4">
-                <h2 class="text-xl font-semibold text-zinc-100 tracking-tight">Store Owner & Sales Dashboard</h2>
-                <p class="text-xs text-zinc-400 mt-1">See how our AI automatically helps merchants increase sales and recover lost shoppers on Razorpay.</p>
+            <div class="border-b border-slate-200 pb-4">
+                <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Store Owner & Sales Dashboard</h2>
+                <p class="text-sm text-slate-600 mt-1">See how our AI automatically helps merchants increase sales and recover lost shoppers on Razorpay.</p>
             </div>
 
             <!-- Metrics Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                <div class="black-panel p-4 space-y-1">
-                    <div class="text-[11px] font-mono text-zinc-500 uppercase">Total Sales</div>
-                    <div id="growth-gmv" class="text-xl font-semibold text-zinc-100 font-mono">₹4,89,240</div>
-                    <div class="text-[11px] text-emerald-400 font-mono">+28.4% with AI</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="light-panel p-4 space-y-1">
+                    <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Total Sales</div>
+                    <div id="growth-gmv" class="text-2xl font-black text-slate-900 font-mono">₹4,89,240</div>
+                    <div class="text-xs text-emerald-600 font-semibold">+28.4% higher with AI</div>
                 </div>
 
-                <div class="black-panel p-4 space-y-1">
-                    <div class="text-[11px] font-mono text-zinc-500 uppercase">Deals Closed by AI</div>
-                    <div id="growth-conversion" class="text-xl font-semibold text-zinc-100 font-mono">64.8%</div>
-                    <div class="text-[11px] text-zinc-400 font-mono">6 out of 10 shoppers bought</div>
+                <div class="light-panel p-4 space-y-1">
+                    <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Deals Closed by AI</div>
+                    <div id="growth-conversion" class="text-2xl font-black text-slate-900 font-mono">64.8%</div>
+                    <div class="text-xs text-slate-600 font-medium">6 out of 10 shoppers bought</div>
                 </div>
 
-                <div class="black-panel p-4 space-y-1">
-                    <div class="text-[11px] font-mono text-zinc-500 uppercase">Average Order Value</div>
-                    <div id="growth-aov" class="text-xl font-semibold text-zinc-100 font-mono">₹11,648</div>
-                    <div class="text-[11px] text-zinc-400 font-mono">+42% bundle attach</div>
+                <div class="light-panel p-4 space-y-1">
+                    <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Average Order Value</div>
+                    <div id="growth-aov" class="text-2xl font-black text-slate-900 font-mono">₹11,648</div>
+                    <div class="text-xs text-slate-600 font-medium">+42% bundle attach</div>
                 </div>
 
-                <div class="black-panel p-4 space-y-1">
-                    <div class="text-[11px] font-mono text-zinc-500 uppercase">WhatsApp Recovered</div>
-                    <div id="growth-recovered" class="text-xl font-semibold text-zinc-100 font-mono">₹98,450 (14 carts)</div>
-                    <div class="text-[11px] text-emerald-400 font-mono">Dynamic Payment Links</div>
+                <div class="light-panel p-4 space-y-1">
+                    <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">WhatsApp Recovered</div>
+                    <div id="growth-recovered" class="text-2xl font-black text-emerald-600 font-mono">₹98,450 (14 carts)</div>
+                    <div class="text-xs text-slate-500">Dynamic Payment Links</div>
                 </div>
             </div>
 
             <!-- Recent Completed Purchases -->
-            <div class="black-panel p-4 space-y-3">
-                <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                    <span class="text-xs font-mono text-zinc-400 uppercase">Recent Completed Purchases</span>
-                    <span class="text-[11px] font-mono text-zinc-500">Razorpay API Feed</span>
+            <div class="light-panel p-5 space-y-3">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                    <span class="text-xs font-bold text-slate-900 uppercase tracking-wide">Recent Completed Purchases</span>
+                    <span class="text-xs text-slate-400 font-medium">Razorpay API Feed</span>
                 </div>
 
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse text-xs">
                         <thead>
-                            <tr class="border-b border-[#262626] text-[11px] font-mono text-zinc-500 uppercase">
-                                <th class="py-2 px-2.5">Item Purchased</th>
-                                <th class="py-2 px-2.5">Buyer Agent</th>
-                                <th class="py-2 px-2.5">Original Price</th>
-                                <th class="py-2 px-2.5">Settled Price</th>
-                                <th class="py-2 px-2.5">Payment Rail</th>
-                                <th class="py-2 px-2.5">Status</th>
+                            <tr class="border-b border-slate-200 text-slate-500 pb-2">
+                                <th class="py-2.5 px-3 font-semibold">Item Purchased</th>
+                                <th class="py-2.5 px-3 font-semibold">Buyer Agent</th>
+                                <th class="py-2.5 px-3 font-semibold">Original Price</th>
+                                <th class="py-2.5 px-3 font-semibold">Settled Price</th>
+                                <th class="py-2.5 px-3 font-semibold">Payment Rail</th>
+                                <th class="py-2.5 px-3 font-semibold">Status</th>
                             </tr>
                         </thead>
-                        <tbody id="tx-feed-tbody" class="divide-y divide-[#1f1f1f] font-mono">
+                        <tbody id="tx-feed-tbody" class="divide-y divide-slate-100">
                             <!-- Populated by JS -->
                         </tbody>
                     </table>
@@ -277,34 +275,34 @@
         <!-- TAB 3: SAFETY & BUDGET CONTROLS -->
         <!-- ========================================== -->
         <div id="budget-vault" class="tab-content hidden space-y-6">
-            <div class="border-b border-[#262626] pb-4">
-                <h2 class="text-xl font-semibold text-zinc-100 tracking-tight">Spending Safety & Limits</h2>
-                <p class="text-xs text-zinc-400 mt-1">Set strict rules so your AI assistant can only spend what you allow, and always asks for permission on big purchases.</p>
+            <div class="border-b border-slate-200 pb-4">
+                <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Spending Safety & Limits</h2>
+                <p class="text-sm text-slate-600 mt-1">Set strict rules so your AI assistant can only spend what you allow, and always asks for permission on big purchases.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 <!-- Left: Limits Controls (5 cols) -->
-                <div class="lg:col-span-5 black-panel p-4 space-y-4">
-                    <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                        <span class="text-xs font-mono text-zinc-400 uppercase">Spending Rules</span>
-                        <span class="text-[10px] font-mono text-zinc-500">PROTECTED</span>
+                <div class="lg:col-span-5 light-panel p-5 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <span class="text-xs font-bold text-slate-900 uppercase tracking-wide">Spending Rules</span>
+                        <span class="text-xs text-emerald-600 font-semibold">PROTECTED</span>
                     </div>
 
-                    <div class="space-y-3">
+                    <div class="space-y-3.5">
                         <div class="space-y-1">
-                            <label class="text-xs text-zinc-400">Daily Spending Limit (₹):</label>
-                            <input type="number" id="vault-daily-limit" value="50000" class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2 text-xs text-zinc-100 font-mono focus:border-zinc-500 focus:outline-none">
-                            <p class="text-[11px] text-zinc-500">The total amount your AI is allowed to spend across all purchases in 24 hours.</p>
+                            <label class="text-xs font-semibold text-slate-700">Daily Spending Limit (₹):</label>
+                            <input type="number" id="vault-daily-limit" value="50000" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs text-slate-900 font-bold focus:bg-white focus:border-sky-600 focus:outline-none">
+                            <p class="text-[11px] text-slate-500">The total amount your AI is allowed to spend across all purchases in 24 hours.</p>
                         </div>
 
                         <div class="space-y-1">
-                            <label class="text-xs text-zinc-400">Ask My Approval If An Item Exceeds (₹):</label>
-                            <input type="number" id="vault-stepup-threshold" value="20000" class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2 text-xs text-zinc-100 font-mono focus:border-zinc-500 focus:outline-none">
-                            <p class="text-[11px] text-zinc-500">For anything above this amount, the AI will pause and ask for your confirmation before paying.</p>
+                            <label class="text-xs font-semibold text-slate-700">Ask My Approval If An Item Exceeds (₹):</label>
+                            <input type="number" id="vault-stepup-threshold" value="20000" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs text-slate-900 font-bold focus:bg-white focus:border-sky-600 focus:outline-none">
+                            <p class="text-[11px] text-slate-500">For anything above this amount, the AI will pause and ask for your confirmation before paying.</p>
                         </div>
 
                         <div class="pt-2">
-                            <button onclick="saveBudgetSettings()" class="w-full py-2.5 btn-primary text-xs">
+                            <button onclick="saveBudgetSettings()" class="w-full py-2.5 btn-primary text-xs shadow-sm">
                                 Save Safety Rules
                             </button>
                         </div>
@@ -312,13 +310,13 @@
                 </div>
 
                 <!-- Right: Active Passes (7 cols) -->
-                <div class="lg:col-span-7 black-panel p-4 space-y-3">
-                    <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                        <span class="text-xs font-mono text-zinc-400 uppercase">Active Authorization Passes</span>
-                        <span class="text-[10px] font-mono text-emerald-400">ACTIVE</span>
+                <div class="lg:col-span-7 light-panel p-5 space-y-3">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <span class="text-xs font-bold text-slate-900 uppercase tracking-wide">Active Authorization Passes</span>
+                        <span class="text-xs text-emerald-600 font-semibold">ACTIVE</span>
                     </div>
 
-                    <div id="vault-tokens-list" class="space-y-2.5 font-mono text-xs">
+                    <div id="vault-tokens-list" class="space-y-2.5 text-xs">
                         <!-- Populated by JS -->
                     </div>
                 </div>
@@ -329,38 +327,41 @@
         <!-- TAB 4: WHATSAPP CART RECOVERY -->
         <!-- ========================================== -->
         <div id="recovery-sim" class="tab-content hidden space-y-6">
-            <div class="border-b border-[#262626] pb-4">
-                <h2 class="text-xl font-semibold text-zinc-100 tracking-tight">WhatsApp Deal Recovery Demo</h2>
-                <p class="text-xs text-zinc-400 mt-1">See how the store automatically sends a WhatsApp message with an instant discount link when someone leaves their cart.</p>
+            <div class="border-b border-slate-200 pb-4">
+                <h2 class="text-2xl font-bold text-slate-900 tracking-tight">WhatsApp Deal Recovery Demo</h2>
+                <p class="text-sm text-slate-600 mt-1">See how the store automatically sends a WhatsApp message with an instant discount link when someone leaves their cart.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 <!-- Drop-off Profile (4 cols) -->
-                <div class="lg:col-span-4 black-panel p-4 space-y-3">
-                    <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                        <span class="text-xs font-mono text-zinc-400 uppercase">Detected Customer</span>
-                        <span class="text-[10px] font-mono text-zinc-500">DROP-OFF</span>
+                <div class="lg:col-span-4 light-panel p-5 space-y-3">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <span class="text-xs font-bold text-slate-900 uppercase tracking-wide">Detected Customer</span>
+                        <span class="text-xs text-amber-600 font-semibold bg-amber-50 px-2 py-0.5 rounded border border-amber-200">DROP-OFF</span>
                     </div>
-                    <div id="recovery-user-details" class="space-y-2 text-xs font-mono text-zinc-300">
+                    <div id="recovery-user-details" class="space-y-2 text-xs text-slate-700">
                         <!-- Populated by JS -->
                     </div>
                 </div>
 
                 <!-- Chat Stream (8 cols) -->
-                <div class="lg:col-span-8 black-panel p-4 space-y-3 flex flex-col h-[500px]">
-                    <div class="flex items-center justify-between border-b border-[#262626] pb-2.5">
-                        <span class="text-xs font-mono text-zinc-400 uppercase">WhatsApp Chat Stream</span>
-                        <span class="text-[10px] font-mono text-emerald-400">SECURE LINK GEN</span>
+                <div class="lg:col-span-8 light-panel p-5 space-y-3 flex flex-col h-[500px]">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                            <span class="text-xs font-bold text-slate-900">WhatsApp Chat Stream</span>
+                        </div>
+                        <span class="text-xs text-emerald-600 font-medium">SECURE LINK GENERATOR</span>
                     </div>
 
-                    <div id="recovery-chat-window" class="flex-1 overflow-y-auto space-y-3 pr-2 custom-scrollbar text-xs">
+                    <div id="recovery-chat-window" class="flex-1 overflow-y-auto space-y-3 pr-2 custom-scrollbar text-xs bg-slate-50/70 p-3 rounded-lg border border-slate-100">
                         <!-- Populated by JS -->
                     </div>
 
-                    <div class="flex gap-2 pt-2 border-t border-[#262626]">
-                        <input type="text" id="recovery-input-text" placeholder="Type a reply as Priya..." class="flex-1 bg-[#0d0d0d] border border-[#262626] rounded px-3 py-2 text-xs text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-zinc-500 font-mono">
-                        <button onclick="sendRecoveryReply()" class="px-4 py-2 btn-secondary text-xs font-mono">
-                            Send
+                    <div class="flex gap-2 pt-2 border-t border-slate-100">
+                        <input type="text" id="recovery-input-text" placeholder="Type a reply as Priya..." class="flex-1 bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-sky-600">
+                        <button onclick="sendRecoveryReply()" class="px-4 py-2 btn-secondary text-xs shadow-sm">
+                            Send Reply
                         </button>
                     </div>
                 </div>
@@ -371,26 +372,26 @@
         <!-- TAB 5: ABOUT CREATOR (PALASH TRIPATHI) -->
         <!-- ========================================== -->
         <div id="about-creator" class="tab-content hidden space-y-6">
-            <div class="border-b border-[#262626] pb-4">
-                <h2 class="text-xl font-semibold text-zinc-100 tracking-tight">About Creator</h2>
-                <p class="text-xs text-zinc-400 mt-1">Background, motivation, and system overview.</p>
+            <div class="border-b border-slate-200 pb-4">
+                <h2 class="text-2xl font-bold text-slate-900 tracking-tight">About Creator</h2>
+                <p class="text-sm text-slate-600 mt-1">Background, motivation, and system architecture.</p>
             </div>
 
             <!-- Profile Summary Card -->
-            <div class="black-panel p-6 space-y-5">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#262626] pb-4">
-                    <div>
-                        <h3 class="text-2xl font-bold text-zinc-100 tracking-tight">Palash Tripathi</h3>
-                        <p class="text-xs font-mono text-zinc-400 mt-0.5">AI Systems & Fintech Builder • Full-Stack Product Engineer</p>
+            <div class="light-panel p-6 sm:p-8 space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+                    <div class="space-y-0.5">
+                        <h3 class="text-2xl font-black text-slate-900 tracking-tight">Palash Tripathi</h3>
+                        <p class="text-xs font-semibold text-sky-700">AI Systems & Fintech Builder • Full-Stack Product Engineer</p>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-[#171717] border border-[#262626] text-zinc-300">
-                            Noida, India
+                        <span class="text-xs font-medium px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700">
+                            📍 Noida, India
                         </span>
                     </div>
                 </div>
 
-                <div class="space-y-2 text-xs text-zinc-300 leading-relaxed">
+                <div class="space-y-2.5 text-xs text-slate-600 leading-relaxed">
                     <p>
                         "Today, AI assistants like ChatGPT can write text, but they can't shop or buy things for you. Whenever you want to buy something online, you still have to open multiple tabs, compare bundles, search for coupon codes, and enter card details.
                     </p>
@@ -400,31 +401,31 @@
                 </div>
 
                 <!-- 4 Simple Feature Highlights -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
-                    <div class="black-subpanel p-3.5 space-y-1.5">
-                        <div class="text-xs font-mono text-zinc-200 font-semibold">1. Automatic Bargaining</div>
-                        <p class="text-[11px] text-zinc-400 leading-relaxed">
-                            Your AI shopper automatically asks the store for bundle discounts (like a free case or warranty) and gets discounts for paying via UPI.
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-2">
+                    <div class="light-subpanel p-4 space-y-1.5">
+                        <div class="text-xs font-bold text-slate-900">1. Automatic Bargaining</div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Your AI shopper automatically asks the store for bundle discounts (like a free case or warranty) and passes through fee discounts for paying via UPI.
                         </p>
                     </div>
 
-                    <div class="black-subpanel p-3.5 space-y-1.5">
-                        <div class="text-xs font-mono text-zinc-200 font-semibold">2. Guaranteed Spending Safety</div>
-                        <p class="text-[11px] text-zinc-400 leading-relaxed">
+                    <div class="light-subpanel p-4 space-y-1.5">
+                        <div class="text-xs font-bold text-slate-900">2. Guaranteed Spending Safety</div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
                             Set daily limits (like ₹10,000/day). The AI can never spend more than you allow, and big purchases always ask for your permission first.
                         </p>
                     </div>
 
-                    <div class="black-subpanel p-3.5 space-y-1.5">
-                        <div class="text-xs font-mono text-zinc-200 font-semibold">3. Instant Razorpay Checkout</div>
-                        <p class="text-[11px] text-zinc-400 leading-relaxed">
+                    <div class="light-subpanel p-4 space-y-1.5">
+                        <div class="text-xs font-bold text-slate-900">3. Instant Razorpay Checkout</div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
                             Built directly on Razorpay's trusted infrastructure, supporting Instant Turbo UPI QR codes, Cards, and No-Cost EMI options.
                         </p>
                     </div>
 
-                    <div class="black-subpanel p-3.5 space-y-1.5">
-                        <div class="text-xs font-mono text-zinc-200 font-semibold">4. WhatsApp Cart Recovery</div>
-                        <p class="text-[11px] text-zinc-400 leading-relaxed">
+                    <div class="light-subpanel p-4 space-y-1.5">
+                        <div class="text-xs font-bold text-slate-900">4. WhatsApp Cart Recovery</div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
                             Helps stores automatically re-engage shoppers who left without buying by sending them a limited-time discount link on WhatsApp.
                         </p>
                     </div>
@@ -437,76 +438,78 @@
     <!-- ========================================== -->
     <!-- RAZORPAY CHECKOUT MODAL -->
     <!-- ========================================== -->
-    <div id="razorpay-modal" class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 hidden">
-        <div class="bg-[#121212] border border-[#262626] rounded-lg max-w-lg w-full overflow-hidden text-xs">
+    <div id="razorpay-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-white border border-slate-200 rounded-2xl max-w-lg w-full overflow-hidden text-xs shadow-2xl">
             <!-- Modal Header -->
-            <div class="bg-[#0c2340] p-3.5 text-white flex items-center justify-between border-b border-[#1f3a5f]">
-                <div class="flex items-center gap-2">
-                    <span class="w-5 h-5 bg-blue-500 rounded text-white font-bold flex items-center justify-center text-xs">R</span>
-                    <span class="font-semibold">Razorpay Agentic Checkout</span>
+            <div class="bg-[#0c2340] p-4 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <span class="w-6 h-6 bg-blue-500 rounded-md text-white font-black flex items-center justify-center text-xs">R</span>
+                    <div>
+                        <span class="font-bold text-sm block">Razorpay Checkout</span>
+                        <span id="rzp-modal-order-id" class="text-[10px] text-blue-200 block font-mono">order_rzp_98412</span>
+                    </div>
                 </div>
-                <div class="text-right font-mono">
-                    <span id="rzp-modal-amount" class="font-bold text-sm text-zinc-100">₹26,490</span>
-                    <span id="rzp-modal-order-id" class="text-[10px] text-blue-300 block">order_rzp_98412</span>
+                <div class="text-right">
+                    <span id="rzp-modal-amount" class="font-black text-base text-white block font-mono">₹26,490</span>
                 </div>
             </div>
 
             <!-- Savings Banner -->
-            <div class="bg-[#0d0d0d] px-3.5 py-2 border-b border-[#222222] flex justify-between">
-                <span id="rzp-modal-item-name" class="text-zinc-300">Sony WH-1000XM5 (+ Travel Case)</span>
-                <span id="rzp-modal-savings" class="text-emerald-400 font-mono">Saved ₹5,999</span>
+            <div class="bg-emerald-50 px-4 py-2.5 border-b border-emerald-100 flex justify-between items-center text-emerald-800">
+                <span id="rzp-modal-item-name" class="font-semibold">Sony WH-1000XM5 (+ Travel Case)</span>
+                <span id="rzp-modal-savings" class="font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Saved ₹5,999</span>
             </div>
 
             <!-- Step-Up Warning (if needed) -->
-            <div id="rzp-stepup-notice" class="hidden bg-[#1c1408] border-b border-[#3d2b0e] p-2.5 text-zinc-300 flex items-start gap-2">
-                <span class="text-amber-400 font-mono text-[10px] uppercase font-bold">[STEP-UP AUTH]</span>
-                <span class="text-[11px]">Transaction exceeds ₹20,000 safety threshold. Quick human confirmation required.</span>
+            <div id="rzp-stepup-notice" class="hidden bg-amber-50 border-b border-amber-200 p-3 text-amber-900 flex items-start gap-2">
+                <span class="text-amber-700 font-bold">[STEP-UP AUTH]</span>
+                <span class="text-xs">Transaction exceeds ₹20,000 safety threshold. Quick human confirmation required.</span>
             </div>
 
             <!-- Payment Methods Tabs -->
-            <div class="p-4 space-y-3">
-                <div class="grid grid-cols-3 gap-1 bg-[#0d0d0d] p-1 rounded border border-[#222222]">
-                    <button id="paytab-btn-turbo-upi" onclick="selectPaymentTab('turbo-upi')" class="py-1.5 text-xs font-medium bg-[#222222] text-white rounded">Turbo UPI</button>
-                    <button id="paytab-btn-cards" onclick="selectPaymentTab('cards')" class="py-1.5 text-xs font-medium text-zinc-400 hover:text-white rounded">Cards</button>
-                    <button id="paytab-btn-emi" onclick="selectPaymentTab('emi')" class="py-1.5 text-xs font-medium text-zinc-400 hover:text-white rounded">EMI</button>
+            <div class="p-5 space-y-4">
+                <div class="grid grid-cols-3 gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
+                    <button id="paytab-btn-turbo-upi" onclick="selectPaymentTab('turbo-upi')" class="py-2 text-xs font-semibold bg-white text-slate-900 rounded-lg shadow-sm">⚡ Turbo UPI</button>
+                    <button id="paytab-btn-cards" onclick="selectPaymentTab('cards')" class="py-2 text-xs font-medium text-slate-600 hover:text-slate-900 rounded-lg">💳 Cards</button>
+                    <button id="paytab-btn-emi" onclick="selectPaymentTab('emi')" class="py-2 text-xs font-medium text-slate-600 hover:text-slate-900 rounded-lg">📅 EMI</button>
                 </div>
 
                 <!-- VIEW 1: TURBO UPI -->
                 <div id="payview-turbo-upi" class="space-y-3">
-                    <div class="bg-[#0d0d0d] p-4 rounded border border-[#222222] flex flex-col items-center justify-center text-center space-y-2">
-                        <div class="w-32 h-32 bg-white p-1 rounded">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=upi://pay?pa=razorpay@icici&pn=RazorNexus&am=26490&cu=INR" alt="Razorpay QR" class="w-full h-full">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center text-center space-y-2">
+                        <div class="w-36 h-36 bg-white p-2 rounded-lg border border-slate-200 shadow-sm">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=upi://pay?pa=razorpay@icici&pn=RazorNexus&am=26490&cu=INR" alt="Razorpay QR" class="w-full h-full">
                         </div>
-                        <p class="text-[11px] text-zinc-400">Scan with Google Pay, PhonePe, or Paytm</p>
-                        <span class="text-[10px] font-mono text-emerald-400">Instant ₹750 Turbo UPI discount applied</span>
+                        <p class="text-xs text-slate-600 font-medium">Scan with Google Pay, PhonePe, or Paytm</p>
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Instant ₹750 Turbo UPI discount applied</span>
                     </div>
                 </div>
 
                 <!-- VIEW 2: CARDS -->
                 <div id="payview-cards" class="hidden space-y-2">
-                    <input type="text" value="4111 •••• •••• 1111 (HDFC Visa)" disabled class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2 text-zinc-300 font-mono">
+                    <input type="text" value="4111 •••• •••• 1111 (HDFC Visa)" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-slate-700 font-mono text-xs">
                     <div class="grid grid-cols-2 gap-2">
-                        <input type="text" value="12/28" disabled class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2 text-zinc-300 font-mono">
-                        <input type="password" value="999" disabled class="w-full bg-[#0d0d0d] border border-[#262626] rounded p-2 text-zinc-300 font-mono">
+                        <input type="text" value="12/28" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-slate-700 font-mono text-xs">
+                        <input type="password" value="999" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-slate-700 font-mono text-xs">
                     </div>
                 </div>
 
                 <!-- VIEW 3: EMI -->
-                <div id="payview-emi" class="hidden p-3 rounded bg-[#0d0d0d] border border-[#222222] space-y-1">
-                    <div class="flex justify-between font-medium text-zinc-200">
+                <div id="payview-emi" class="hidden p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                    <div class="flex justify-between font-bold text-slate-900">
                         <span>HDFC No-Cost EMI (6M)</span>
                         <span class="font-mono">₹4,415/mo</span>
                     </div>
-                    <span class="text-[10px] text-emerald-400 font-mono">0% interest charged</span>
+                    <span class="text-[11px] text-emerald-700 font-semibold">0% interest charged</span>
                 </div>
 
                 <!-- Controls -->
                 <div class="flex gap-2 pt-2">
-                    <button onclick="closeRazorpayModal()" class="py-2 px-3 btn-secondary text-xs">
+                    <button onclick="closeRazorpayModal()" class="py-2.5 px-4 btn-secondary text-xs">
                         Cancel
                     </button>
-                    <button id="btn-confirm-pay" onclick="executePayment('Razorpay Turbo UPI')" class="flex-1 py-2 px-3 btn-primary text-xs">
-                        Authorize Settlement
+                    <button id="btn-confirm-pay" onclick="executePayment('Razorpay Turbo UPI')" class="flex-1 py-2.5 px-4 btn-green text-xs">
+                        Authorize Settlement (₹26,490)
                     </button>
                 </div>
             </div>
@@ -516,28 +519,31 @@
     <!-- ========================================== -->
     <!-- SUCCESS MODAL -->
     <!-- ========================================== -->
-    <div id="success-modal" class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 hidden text-xs">
-        <div class="bg-[#121212] border border-[#262626] rounded-lg max-w-sm w-full p-5 space-y-4 font-mono">
-            <div class="flex items-center gap-2 text-emerald-400">
-                <span>●</span>
-                <span class="font-semibold text-sm text-zinc-100">Settlement Confirmed</span>
+    <div id="success-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden text-xs">
+        <div class="bg-white border border-slate-200 rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl text-center">
+            <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 text-2xl flex items-center justify-center mx-auto">
+                ✓
+            </div>
+            <div>
+                <h3 class="text-base font-bold text-slate-900">Payment Confirmed</h3>
+                <p class="text-xs text-slate-500 mt-0.5">Your order has been settled securely on Razorpay.</p>
             </div>
 
-            <div class="bg-[#0d0d0d] p-3 rounded border border-[#222222] space-y-1.5">
-                <div class="flex justify-between"><span class="text-zinc-500">Payment ID:</span> <span id="success-payment-id" class="text-zinc-200">pay_9821a</span></div>
-                <div class="flex justify-between"><span class="text-zinc-500">Amount:</span> <span id="success-amount" class="text-zinc-100 font-bold">₹26,490</span></div>
-                <div class="flex justify-between"><span class="text-zinc-500">Method:</span> <span id="success-method" class="text-zinc-300">Razorpay Turbo UPI</span></div>
-                <div class="flex justify-between"><span class="text-zinc-500">Deliver To:</span> <span class="text-zinc-300">Palash Tripathi, Noida</span></div>
+            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-2 text-left text-xs font-mono">
+                <div class="flex justify-between"><span class="text-slate-500">Payment ID:</span> <span id="success-payment-id" class="text-slate-900 font-bold">pay_9821a</span></div>
+                <div class="flex justify-between"><span class="text-slate-500">Amount:</span> <span id="success-amount" class="text-emerald-700 font-bold">₹26,490</span></div>
+                <div class="flex justify-between"><span class="text-slate-500">Method:</span> <span id="success-method" class="text-slate-700">Razorpay Turbo UPI</span></div>
+                <div class="flex justify-between"><span class="text-slate-500">Deliver To:</span> <span class="text-slate-700">Palash Tripathi, Noida</span></div>
             </div>
 
-            <button onclick="closeSuccessModal()" class="w-full py-2 btn-primary text-xs">
-                Dismiss
+            <button onclick="closeSuccessModal()" class="w-full py-2.5 btn-primary text-xs">
+                Done
             </button>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="border-t border-[#1f1f1f] py-6 text-center text-xs text-zinc-500 font-mono">
+    <footer class="border-t border-slate-200 py-6 text-center text-xs text-slate-500 bg-white">
         <p>RazorNexus — Built by Palash Tripathi (Noida, India)</p>
     </footer>
 
