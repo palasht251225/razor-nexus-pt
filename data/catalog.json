@@ -1,0 +1,131 @@
+[
+  {
+    "id": "prod_101",
+    "name": "Sony WH-1000XM5 Wireless ANC Headphones",
+    "category": "Electronics",
+    "base_price": 29990,
+    "min_margin_price": 23500,
+    "current_inventory": 42,
+    "inventory_holding_cost_daily": 15,
+    "elasticity_score": 1.45,
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=80",
+    "rating": 4.8,
+    "reviews_count": 1240,
+    "tags": ["audio", "noise-cancelling", "premium", "headphones"],
+    "bundle_addons": [
+      {
+        "id": "addon_1",
+        "name": "Premium Hard-Shell Protective Travel Case",
+        "retail_price": 2499,
+        "negotiated_price": 699,
+        "margin_cost": 350
+      },
+      {
+        "id": "addon_2",
+        "name": "1-Year Extended Comprehensive Warranty",
+        "retail_price": 1999,
+        "negotiated_price": 499,
+        "margin_cost": 150
+      }
+    ],
+    "razorpay_incentives": {
+      "turbo_upi": { "discount_pct": 3, "max_discount": 750, "description": "Instant ₹750 off via Razorpay Turbo UPI" },
+      "card_emi": { "no_cost_months": 6, "description": "No-Cost EMI up to 6 months on Razorpay Smart Routing" }
+    }
+  },
+  {
+    "id": "prod_102",
+    "name": "Ergonomic Pro Ultra Mesh Chair with 4D Armrests",
+    "category": "Workplace & Furniture",
+    "base_price": 18499,
+    "min_margin_price": 13999,
+    "current_inventory": 18,
+    "inventory_holding_cost_daily": 45,
+    "elasticity_score": 1.65,
+    "image": "https://images.unsplash.com/photo-1580481077195-c3a8a37f714b?w=500&auto=format&fit=crop&q=80",
+    "rating": 4.9,
+    "reviews_count": 890,
+    "tags": ["chair", "ergonomic", "home-office", "health"],
+    "bundle_addons": [
+      {
+        "id": "addon_3",
+        "name": "Memory Foam Ergonomic Lumbar Support Pillow",
+        "retail_price": 1899,
+        "negotiated_price": 399,
+        "margin_cost": 200
+      },
+      {
+        "id": "addon_4",
+        "name": "Silicone Rollerblade Caster Wheels Set",
+        "retail_price": 1299,
+        "negotiated_price": 299,
+        "margin_cost": 120
+      }
+    ],
+    "razorpay_incentives": {
+      "turbo_upi": { "discount_pct": 4, "max_discount": 600, "description": "Extra ₹600 off with Razorpay UPI Intent" },
+      "card_emi": { "no_cost_months": 3, "description": "3 Months No-Cost EMI supported" }
+    }
+  },
+  {
+    "id": "prod_103",
+    "name": "UltraWide 34-inch 165Hz Curved Productivity Monitor",
+    "category": "Electronics",
+    "base_price": 38990,
+    "min_margin_price": 31500,
+    "current_inventory": 11,
+    "inventory_holding_cost_daily": 60,
+    "elasticity_score": 1.25,
+    "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&auto=format&fit=crop&q=80",
+    "rating": 4.7,
+    "reviews_count": 450,
+    "tags": ["monitor", "ultrawide", "display", "coding"],
+    "bundle_addons": [
+      {
+        "id": "addon_5",
+        "name": "Heavy-Duty Gas Spring Dual Monitor Arm",
+        "retail_price": 3999,
+        "negotiated_price": 1199,
+        "margin_cost": 650
+      },
+      {
+        "id": "addon_6",
+        "name": "ScreenBar Plus Auto-Dimming Monitor Light Bar",
+        "retail_price": 4499,
+        "negotiated_price": 1499,
+        "margin_cost": 800
+      }
+    ],
+    "razorpay_incentives": {
+      "turbo_upi": { "discount_pct": 2.5, "max_discount": 900, "description": "₹900 instant discount on Turbo UPI" },
+      "card_emi": { "no_cost_months": 9, "description": "9 Months No-Cost EMI via Razorpay" }
+    }
+  },
+  {
+    "id": "prod_104",
+    "name": "CloudScale AI Developer Cloud Platform (Annual Pro)",
+    "category": "SaaS & Developer Tools",
+    "base_price": 24000,
+    "min_margin_price": 16000,
+    "current_inventory": 9999,
+    "inventory_holding_cost_daily": 0,
+    "elasticity_score": 2.1,
+    "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&auto=format&fit=crop&q=80",
+    "rating": 4.9,
+    "reviews_count": 3100,
+    "tags": ["saas", "api", "cloud", "developer", "recurring"],
+    "bundle_addons": [
+      {
+        "id": "addon_7",
+        "name": "Dedicated GPU Cluster Accelerator (500 Compute Hours)",
+        "retail_price": 8000,
+        "negotiated_price": 1999,
+        "margin_cost": 600
+      }
+    ],
+    "razorpay_incentives": {
+      "turbo_upi": { "discount_pct": 5, "max_discount": 1200, "description": "5% recurring discount on Razorpay Subscriptions" },
+      "card_emi": { "no_cost_months": 12, "description": "Annual recurring mandate with Razorpay Subscriptions" }
+    }
+  }
+]
